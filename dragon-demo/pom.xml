@@ -6,16 +6,20 @@
 	<version>${dragon-version}</version>
 	<packaging>war</packaging>
 	<parent>
-		<groupId>fhdragon</groupId>
-		<artifactId>parent</artifactId>
-		<version>1.0-SNAPSHOT</version>
-		<relativePath>../parent/</relativePath>
-	</parent>
+        <groupId>dragon</groupId>
+        <artifactId>dragon-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../parent/</relativePath>
+    </parent>
 
 	<dependencies>
 
 		<!-- Begin:add by Wenlong Meng at 2012/07/15 for framework -->
-		
+		<dependency>
+            <groupId>dragon</groupId>
+            <artifactId>dragon-framework</artifactId>
+            <version>${dragon-version}</version> 
+        </dependency>
 		<!-- End:add by Wenlong Meng at 2012/07/15 for framework -->
 
 		<!-- Begin:add by Wenlong Meng at 2012/07/15 for file upload -->
@@ -100,6 +104,58 @@
 			<scope>provided</scope>
 		</dependency>
 		<!-- End:add by Wenlong Meng at 2013/04/30 for servlet/jsp -->
+		
+		<!-- Begin:add by Wenlong Meng at 2013/04/30 for tomcat -->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>${tomcat-version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-logging-juli</artifactId>
+            <version>${tomcat-version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <version>${tomcat-version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jasper</artifactId>
+            <version>${tomcat-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.jdt.core.compiler</groupId>
+                    <artifactId>ecj</artifactId>
+                </exclusion>
+            </exclusions>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jdt.core.compiler</groupId>
+            <artifactId>ecj</artifactId>
+            <version>3.5.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jasper-el</artifactId>
+            <version>${tomcat-version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jsp-api</artifactId>
+            <version>${tomcat-version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- End:add by Wenlong Meng at 2013/04/30 for tomcat -->
 
 	</dependencies>
 
@@ -112,7 +168,6 @@
 				<artifactId>maven-surefire-plug</artifactId>
 				<version>${plugins-surefire-version}</version>
 				<configuration>
-					<testFailureIgnore>true</testFailureIgnore>
 					<skip>true</skip>
 				</configuration>
 			</plugin>
