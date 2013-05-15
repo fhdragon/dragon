@@ -1,12 +1,38 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>dragon</groupId>
-  <artifactId>dragon-commons</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <parent>
-        <groupId>dragon</groupId>
-        <artifactId>dragon-parent</artifactId>
-        <version>1.0-SNAPSHOT</version>
-        <relativePath>../parent/</relativePath>
-    </parent>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>dragon</groupId>
+	<artifactId>dragon-commons</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<parent>
+		<groupId>dragon</groupId>
+		<artifactId>dragon-parent</artifactId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../parent/</relativePath>
+	</parent>
+
+	<!-- dependencies jars -->
+	<dependencies>
+
+		<!-- Begin: add by Wenlong Meng at 2013/08/09 for excel -->
+		<dependency>
+			<groupId>net.sourceforge.jexcelapi</groupId>
+			<artifactId>jxl</artifactId>
+			<version>${jxl-version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>log4j</groupId>
+					<artifactId>log4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- End: add by Wenlong Meng at 2013/08/09 for excel -->
+	</dependencies>
+
+	<build>
+		<finalName>dragon-commons</finalName>
+		<plugins>
+
+		</plugins>
+	</build>
 </project>

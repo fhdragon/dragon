@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<!-- 
+ * config for log4j
+ *
+ * @author Wenlong Meng(wenlong.meng@gmail.com)
+ * @version 1.0 at 2013/03/27
+ * @since 1.0
+ --> 
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    
+    <!-- config for appender -->
+    <!-- Begin:add Wenlong Meng at 2013/03/27 for commons -->
+	<appender name="debugAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="/fhdragon/ws/logws/dagon/dragon-commons/debug.log" />
+		<param name="Append" value="true" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%-5p] [%t] %l - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">    
+			<param name="levelMin" value="DEBUG" />    
+			<param name="levelMax" value="INFO" />    
+			<param name="AcceptOnMatch" value="true" />    
+		</filter>
+	</appender>
+	<appender name="errorAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="/fhdragon/ws/logws/dragon/dragon-commons/error.log" />
+		<param name="Append" value="true" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%-5p] [%t] %l - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">    
+			<param name="levelMin" value="ERROR" />    
+			<param name="levelMax" value="ERROR" />    
+			<param name="AcceptOnMatch" value="true" />    
+		</filter> 
+	</appender>
+    <!-- End:add Wenlong Meng at 2013/03/27 for commons -->
+    <!-- Begin:add Wenlong Meng at 2013/03/27 for stdout log -->
+    <appender name="rootAppender" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/fhdragon/ws/logws/dragon/dragon-commons/root.log" />
+        <param name="Append" value="true" />
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%m%n" />
+            <!-- param name="ConversionPattern" value="%d [%-5p] [%t] %l - %m%n" /> -->
+        </layout>
+    </appender>
+    <!-- End:add Wenlong Meng at 2013/03/27 for stdout log -->
+
+    <!-- config for logger -->
+    <!-- Begin:add Wenlong Meng at 2013/03/27 for commons -->
+	<logger name="org.apache.dragon.commons" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="debugAppender" />
+		<appender-ref ref="errorAppender" />
+	</logger>
+    <!-- End:add Wenlong Meng at 2013/03/27 for commons -->
+    
+    <root>
+        <appender-ref ref="rootApapender"/>
+    </root>
+
+</log4j:configuration>
