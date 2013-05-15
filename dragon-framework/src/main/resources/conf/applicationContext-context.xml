@@ -19,9 +19,11 @@
 	<!-- import resource="spring-*.xml"/> -->
 	
 	<!-- application context utilities -->
-	<bean id="appContextUtils" class="f.h.dragon.framework.util.AppContextUtils"></bean>
+	<bean id="appContextUtils" class="org.apache.dragon.framework.util.AppContextUtils"></bean>
 	
 	<!-- scan for service/facade/controller -->
-    <context:component-scan base-package="f.h.dragon" />
+    <context:component-scan base-package="**.service" />
+    <context:component-scan base-package="**.facade" />
+    <context:component-scan base-package="**.controller" />
 	
 </beans>

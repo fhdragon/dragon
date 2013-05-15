@@ -1,108 +1,109 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>dragon</groupId>
-  <artifactId>dragon-framework</artifactId>
-  <version>${dragon-version}</version>
-  <parent>
-        <groupId>dragon</groupId>
-        <artifactId>dragon-parent</artifactId>
-        <version>1.0-SNAPSHOT</version>
-        <relativePath>../parent/</relativePath>
-    </parent>
-    
-    <dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>dragon</groupId>
+	<artifactId>dragon-framework</artifactId>
+	<version>${dragon-version}</version>
+	<parent>
+		<groupId>dragon</groupId>
+		<artifactId>dragon-parent</artifactId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../parent/</relativePath>
+	</parent>
 
-        <!-- Begin:add by Wenlong Meng at 2012/07/15 for file upload -->
-        <dependency>
-            <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
-            <version>${commons-fileupload}</version>
-        </dependency>
-        <!-- End:add by Wenlong Meng at 2012/07/15 for file upload -->
+	<dependencies>
 
-        <!-- Begin:add by Wenlong Meng at 2012/07/15 for cglib -->
-        <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
-            <version>${cglib-version}</version>
-        </dependency>
-        <!-- End:add by Wenlong Meng at 2012/07/15 for cglib -->
+		<!-- Begin:add by Wenlong Meng at 2012/07/15 for file upload -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>${commons-fileupload}</version>
+		</dependency>
+		<!-- End:add by Wenlong Meng at 2012/07/15 for file upload -->
 
-        <!-- Begin:add by Wenlong Meng at 2012/07/15 for datasource -->
-        <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
-            <version>${commons-dbcp-version}</version>
-        </dependency>
-        <!-- End:add by Wenlong Meng at 2012/07/15 for datasource -->
+		<!-- Begin:add by Wenlong Meng at 2012/07/15 for cglib -->
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>${cglib-version}</version>
+		</dependency>
+		<!-- End:add by Wenlong Meng at 2012/07/15 for cglib -->
 
-        <!-- Begin:add by Wenlong Meng at 2012/07/15 for db driver -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql-connector-version}</version>
-        </dependency>
-        <!-- End:add by Wenlong Meng at 2012/07/15 for db driver -->
+		<!-- Begin:add by Wenlong Meng at 2012/07/15 for datasource -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>${commons-dbcp-version}</version>
+		</dependency>
+		<!-- End:add by Wenlong Meng at 2012/07/15 for datasource -->
 
-        <!-- Begin:add by Wenlong Meng at 2012/07/15 for mybatis -->
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-            <version>${org.mybatis.spring-version}</version>
-        </dependency>
+		<!-- Begin:add by Wenlong Meng at 2012/07/15 for db driver -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql-connector-version}</version>
+		</dependency>
+		<!-- End:add by Wenlong Meng at 2012/07/15 for db driver -->
 
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>${org.mybatis-version}</version>
-        </dependency>
-        <!-- End:add by Wenlong Meng at 2012/07/15 for mybatis -->
+		<!-- Begin:add by Wenlong Meng at 2012/07/15 for mybatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>${org.mybatis.spring-version}</version>
+		</dependency>
 
-        <!-- Begin:add by Wenlong Meng at 2012/07/15 for spring -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${org.spring-version}</version>
-        </dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${org.mybatis-version}</version>
+		</dependency>
+		<!-- End:add by Wenlong Meng at 2012/07/15 for mybatis -->
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${org.spring-version}</version>
-        </dependency>
+		<!-- Begin:add by Wenlong Meng at 2012/07/15 for spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${org.spring-version}</version>
+		</dependency>
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>${org.spring-version}</version>
-        </dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${org.spring-version}</version>
+		</dependency>
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>${org.spring-version}</version>
-        </dependency>
-        <!-- End:add by Wenlong Meng at 2012/07/15 for spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${org.spring-version}</version>
+		</dependency>
 
-        <!-- Begin:add by Wenlong Meng at 2013/04/30 for servlet/jsp -->
-        <!-- for compile only, your container should have this -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>${javax.servlet-version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <!-- End:add by Wenlong Meng at 2013/04/30 for servlet/jsp -->
-        
-        <!-- Begin:add by Wenlong Meng at 2013/05/14 for commons -->
-        <!-- End:add by Wenlong Meng at 2013/05/14 for commons -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.spring-version}</version>
+		</dependency>
+		<!-- End:add by Wenlong Meng at 2012/07/15 for spring -->
 
-    </dependencies>
+		<!-- Begin:add by Wenlong Meng at 2013/04/30 for servlet/jsp -->
+		<!-- for compile only, your container should have this -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${javax.servlet-version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- End:add by Wenlong Meng at 2013/04/30 for servlet/jsp -->
 
-    <build>
-        <finalName>dragon-framework</finalName>
-        <plugins>
+		<!-- Begin:add by Wenlong Meng at 2013/05/14 for commons -->
+		<!-- End:add by Wenlong Meng at 2013/05/14 for commons -->
 
-        </plugins>
-    </build>
+	</dependencies>
+
+	<build>
+		<finalName>dragon-framework</finalName>
+		<plugins>
+
+		</plugins>
+	</build>
 </project>
