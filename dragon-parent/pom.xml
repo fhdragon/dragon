@@ -1,0 +1,260 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>dragon</groupId>
+	<artifactId>dragon-parent</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>fhdragon Parent</name>
+	<description>dragon parent pom for dragon modules, created by Wenlong Meng</description>
+	<url>https://github.com/fhdragon</url>
+	<inceptionYear>2013</inceptionYear>
+	<!-- scm -->
+	<scm>
+		<connection>scm:git:git://github.com/fhdragon/dragon-framework.git</connection>
+		<developerConnection>scm:git:git@github.com:fhdragon/dragon-framework.git</developerConnection>
+		<url>https://github.com/fhdragon/</url>
+	</scm>
+	<!-- issueManagement -->
+	<issueManagement>
+		<system>github</system>
+		<url>https://github.com/fhdragon/</url>
+	</issueManagement>
+	<!-- ciManagement TODO -->
+	<ciManagement>
+		<system>jenkins</system>
+		<url>https://fhdragon.ci.cloudbees.com/</url>
+	</ciManagement>
+	<!-- mailing lists -->
+	<mailingLists>
+		<mailingList>
+			<name>Fhdragon Mailing List</name>
+			<post>wenlong.meng@gmail.com</post>
+			<archive>https://github.com/fhdragon/</archive>
+		</mailingList>
+	</mailingLists>
+	<!-- developers -->
+	<developers>
+		<developer>
+			<id>fhdragon</id>
+			<name>F.H Dragon</name>
+			<email>wenlong.meng@gmail.com</email>
+			<organization>fhdragon</organization>
+			<organizationUrl>https://github.com/fhdragon</organizationUrl>
+			<roles>
+				<role>*</role>
+			</roles>
+			<timezone>+8</timezone>
+			<url>https://github.com/fhdragon</url>
+		</developer>
+		<developer>
+			<id>wenlong.meng</id>
+			<name>Wenlong Meng</name>
+			<email>wenlong.meng@gmail.com</email>
+			<organization>fhdragon</organization>
+			<organizationUrl>https://github.com/fhdragon</organizationUrl>
+			<roles>
+				<role>*</role>
+			</roles>
+			<timezone>+8</timezone>
+			<url>https://github.com/fhdragon</url>
+		</developer>
+	</developers>
+	<!-- contributors -->
+	<contributors>
+		<contributor>
+			<name>fhdragon contributors</name>
+			<organization>fhdragon</organization>
+			<email>wenlong.meng@gmail.com</email>
+			<url>https://github.com/fhdragon</url>
+			<roles>
+				<role>developers</role>
+			</roles>
+		</contributor>
+	</contributors>
+	<!-- licenses -->
+	<licenses>
+		<license>
+			<name>Apache Software License - Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+			<comments>The Spring Framework is released under version 2.0 of the Apache License.</comments>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<!-- organization -->
+	<organization>
+		<name>fhdragon</name>
+		<url>https://github.com/fhdragon</url>
+	</organization>
+	<!-- preprequisites -->
+	<prerequisites>
+		<maven>3.0.3</maven>
+	</prerequisites>
+	<!-- distributionManagement -->
+	<distributionManagement>
+		<downloadUrl>https://github.com/fhdragon</downloadUrl>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>fhdragon Snapshot Repository</name>
+			<url>http://localhost:8081/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>releases</id>
+			<name>fhdragon Release Repository</name>
+			<url>http://localhost:8081/nexus/content/repositories/releases</url>
+		</repository>
+	</distributionManagement>
+	<!-- properties -->
+	<properties>
+		<cglib-version>2.2.2</cglib-version>
+		<commons-dbcp-version>1.4</commons-dbcp-version>
+		<commons-fileupload>1.3</commons-fileupload>
+		<encoding>UTF-8</encoding>
+		<java-version>1.6</java-version>
+		<javax.servlet-version>2.5</javax.servlet-version>
+		<javax.servlet.jsp-version>2.1</javax.servlet.jsp-version>
+		<javax.servlet.jstl-version>1.2</javax.servlet.jstl-version>
+		<mysql-connector-version>5.1.24</mysql-connector-version>
+		<org.freemarker-version>2.3.19</org.freemarker-version>
+		<org.junit-version>4.8.1</org.junit-version>
+		<org.log4j-version>1.2.16</org.log4j-version>
+		<org.mybatis-version>3.2.2</org.mybatis-version>
+		<org.mybatis.spring-version>1.2.0</org.mybatis.spring-version>
+		<org.slf4j-version>1.6.1</org.slf4j-version>
+		<org.spring-version>3.2.2.RELEASE</org.spring-version>
+		<plugins-changelog-version>2.2</plugins-changelog-version>
+		<plugins-cobertura-version>2.5.1</plugins-cobertura-version>
+		<plugins-compiler-version>3.0</plugins-compiler-version>
+		<plugins-emma-version>1.0-alpha-3</plugins-emma-version>
+		<plugins-jar-version>2.4</plugins-jar-version>
+		<plugins-javadoc-version>2.9</plugins-javadoc-version>
+		<plugins-jxr-version>2.1</plugins-jxr-version>
+		<plugins-site-version>3.2</plugins-site-version>
+		<plugins-surefire-version>2.14.1</plugins-surefire-version>
+	</properties>
+	<!-- modules -->
+	<!-- modules> <module>commons</module> <module>upload</module> <module>framework</module> 
+		</modules> -->
+	<!-- dependencies -->
+	<dependencies>
+		<!-- Begin:add by Wenlong Meng at 2012/07/15 for test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${org.junit-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- End:add by Wenlong Meng at 2012/07/15 for test -->
+
+		<!-- Begin:add by Wenlong Meng at 2012/07/15 for log -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${org.log4j-version}</version>
+		</dependency>
+		<!-- End:add by Wenlong Meng at 2012/07/15 for log -->
+	</dependencies>
+	<!-- reporting -->
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${plugins-javadoc-version}</version>
+				<configuration>
+					<aggregate>true</aggregate>
+				</configuration>
+			</plugin>
+			<!-- config for cobertura -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>${plugins-cobertura-version}</version>
+			</plugin>
+			<!-- config for emma -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>emma-maven-plugin</artifactId>
+				<version>${plugins-emma-version}</version>
+			</plugin>
+			<!-- config for site -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>${plugins-site-version}</version>
+			</plugin>
+			<!-- config for change log -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-changelog-plugin</artifactId>
+				<version>${plugins-changelog-version}</version>
+				<reportSets>
+					<reportSet>
+						<id>dual-report</id>
+						<configuration>
+							<type>range</type>
+							<range>30</range>
+						</configuration>
+						<reports>
+							<report>changelog</report>
+							<report>file-activity</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<!-- config for surefire -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>${plugins-surefire-version}</version>
+			</plugin>
+			<!-- config for jxr -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>${plugins-jxr-version}</version>
+			</plugin>
+		</plugins>
+	</reporting>
+	<!-- build -->
+	<build>
+		<plugins>
+			<!-- Begin:add by Wenlong Meng at 2012/07/15 for compile -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${plugins-compiler-version}</version>
+				<configuration>
+					<compilerVersion>${java-version}</compilerVersion>
+					<fork>true</fork>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
+					<encoding>${encoding}</encoding>
+				</configuration>
+			</plugin>
+			<!-- End:add by Wenlong Meng at 2012/07/15 for compile -->
+			<!-- config for site -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>${plugins-site-version}</version>
+			</plugin> 
+			<!-- config for test -->
+			<plugin>
+				<groupId>org.apache.maven.pluggins</groupId>
+				<artifactId>maven-surefire-plug</artifactId>
+				<version>${plugins-surefire-version}</version>
+				<configuration>
+					<testFailureIgnore>true</testFailureIgnore>
+					<skip>true</skip>
+				</configuration>
+			</plugin> 
+			<!-- config for jar -->
+			<!-- plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-jar-plugin</artifactId> 
+				<version>${plugins-jar-version}</version> <configuration> <archive> <manifest> 
+				<addDefaultImplementationEntries>true</addDefaultImplementationEntries> <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries> 
+				</manifest> </archive> </configuration> </plugin> -->
+		</plugins>
+
+	</build>
+</project>

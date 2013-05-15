@@ -1,0 +1,89 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd">
+	<!-- the local repository. Default value is ${user.home}/.m2/repository -->
+	<localRepository>/fhdragon/ws/mvnws/repository</localRepository>
+	<!-- Whether Maven should attempt to interact with the user for input. Default 
+		value is true -->
+	<!-- <interactiveMode /> -->
+	<!-- Whether Maven should use plugin-registry.xml file to manage plugin 
+		versions. Default value is false. -->
+	<!-- <usePluginRegistry /> -->
+	<!-- Indicate whether maven should operate in offline mode full-time. Default 
+		value is false. -->
+	<offline>false</offline>
+
+	<!-- (Many) Configuration for different proxy profiles. Multiple proxy profiles 
+		might come in handy for anyone working from a notebook or other mobile platform, 
+		to enable easy switching of entire proxy configurations by simply specifying 
+		the profile id, again either from the command line or from the defaults section 
+		below. -->
+	<!-- <proxies> <proxy> <active /> <protocol /> <username /> <password /> 
+		<port /> <host /> <nonProxyHosts /> <id /> </proxy> </proxies> -->
+
+	<!-- Configuration of server-specific settings, mainly authentication method. 
+		This allows configuration of authentication on a per-server basis. -->
+	<servers>
+		<server>
+			<id>releases</id>
+			<username>fhdragon</username>
+			<password>passw0rd</password>
+		</server>
+		<server>
+			<id>snapshots</id>
+			<username>fhdragon</username>
+			<password>passw0rd</password>
+		</server>
+	</servers>
+
+	<!-- Configuration of download mirrors for repositories. -->
+	<mirrors>
+		<mirror>
+			<id>nexus</id>
+			<name>Nexus Public Mirror</name>
+			<url>http://localhost:8081/nexus/content/groups/public/</url>
+			<mirrorOf>central</mirrorOf>
+			<layout />
+			<mirrorOfLayouts />
+		</mirror>
+	</mirrors>
+
+	<profiles>
+	   <!-- repositories and pluginRepositories -->
+	   <profile>
+	       <id>dev</id>
+	       <repositories>
+	           <repository>
+	               <id>nexus</id>
+	               <name>Nexus Public Mirror</name>
+	               <url>http://localhost:8081/nexus/content/groups/public/</url>
+	               <releases>
+	                   <enabled>true</enabled>
+	               </releases>
+	               <snapshots>
+	                   <enabled>true</enabled>
+	               </snapshots>
+	           </repository>
+	       </repositories>
+	       <!--  
+	       <pluginRepositories>
+	           <pluginRepository>
+	               <id>nexus</id>
+	               <name>Nexus Public Mirror</name>
+	               <url>http://localhost:8081/nexus/content/groups/public/</url>
+                   <releases>
+                       <enabled>true</enabled>
+                   </releases>
+                   <snapshots>
+                       <enabled>false</enabled>
+                   </snapshots>
+	           </pluginRepository>
+	       </pluginRepositories>
+	        -->
+	   </profile>
+	</profiles>
+
+	<activeProfiles>
+	   <activeProfile>dev</activeProfile>
+	</activeProfiles>
+</settings>
