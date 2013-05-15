@@ -5,7 +5,7 @@
 	<artifactId>dragon-parent</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>fhdragon Parent</name>
+	<name>Dragon Parent</name>
 	<description>dragon parent pom for dragon modules, created by Wenlong Meng</description>
 	<url>https://github.com/fhdragon</url>
 	<inceptionYear>2013</inceptionYear>
