@@ -7,7 +7,7 @@ import java.net.NetworkInterface;
 import java.util.Collections;
 import java.util.Enumeration;
 
-import static f.h.dragon.commons.util.StringUtil.*;
+import static org.apache.dragon.commons.util.StringUtil.*;
 
 /**
  * server utilities：support get local ip, check ip. etc

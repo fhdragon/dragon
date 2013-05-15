@@ -1,7 +1,5 @@
 package org.apache.dragon.commons;
 
-import static f.h.dragon.commons.io.Out.*;
-
 import java.io.FileNotFoundException;
 import java.lang.annotation.Annotation;
 import java.lang.annotation.Documented;
@@ -11,8 +9,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import f.h.dragon.commons.io.Out;
-import f.h.dragon.commons.set.Arrays;
+import org.apache.dragon.commons.io.Out;
 
 /**
  * Tester: temp test
