@@ -132,6 +132,7 @@
 		<plugins-jxr-version>2.1</plugins-jxr-version>
 		<plugins-site-version>3.2</plugins-site-version>
 		<plugins-surefire-version>2.14.1</plugins-surefire-version>
+		<tomcat-version>7.0.4</tomcat-version>
 	</properties>
 	<!-- modules -->
 	<!-- modules> <module>commons</module> <module>upload</module> <module>framework</module> 
