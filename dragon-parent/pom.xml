@@ -11,8 +11,8 @@
 	<inceptionYear>2013</inceptionYear>
 	<!-- scm -->
 	<scm>
-		<connection>scm:git:git://github.com/fhdragon/dragon-framework.git</connection>
-		<developerConnection>scm:git:git@github.com:fhdragon/dragon-framework.git</developerConnection>
+		<connection>scm:git:git://github.com/fhdragon/dragon.git</connection>
+		<developerConnection>scm:git:git@github.com:fhdragon/dragon.git</developerConnection>
 		<url>https://github.com/fhdragon/</url>
 	</scm>
 	<!-- issueManagement -->
