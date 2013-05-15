@@ -7,6 +7,6 @@
         <groupId>dragon</groupId>
         <artifactId>dragon-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../parent/</relativePath>
+        <relativePath>../dragon-parent/</relativePath>
     </parent>
 </project>
