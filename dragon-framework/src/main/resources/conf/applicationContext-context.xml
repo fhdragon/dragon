@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	                   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+	<!-- 
+	   Root Context: import some config files, and defines shared resources visible to all other web components
+	   
+	   @author Wenlong Meng(wenlong.meng@gmail.com) 
+	   @version 1.0 at 2012/07/22 
+	   @since 1.0 
+	-->
+	<!-- Configurer that replaces ${...} placeholders with values from properties files -->
+    <!-- (in this case, mail and JDBC related properties) -->
+    <context:property-placeholder location="classpath*:**/*.properties" />
+	
+	<!-- import other config files -->
+	<!-- import resource="spring-*.xml"/> -->
+	
+	<!-- application context utilities -->
+	<bean id="appContextUtils" class="f.h.dragon.framework.util.AppContextUtils"></bean>
+	
+	<!-- scan for service/facade/controller -->
+    <context:component-scan base-package="f.h.dragon" />
+	
+</beans>

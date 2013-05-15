@@ -219,6 +219,8 @@
 	</reporting>
 	<!-- build -->
 	<build>
+		<!-- for name -->
+		<finalName>dragon-parent</finalName>
 		<plugins>
 			<!-- Begin:add by Wenlong Meng at 2012/07/15 for compile -->
 			<plugin>
@@ -239,7 +241,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
 				<version>${plugins-site-version}</version>
-			</plugin> 
+			</plugin>
 			<!-- config for test -->
 			<plugin>
 				<groupId>org.apache.maven.pluggins</groupId>
@@ -249,7 +251,7 @@
 					<testFailureIgnore>true</testFailureIgnore>
 					<skip>true</skip>
 				</configuration>
-			</plugin> 
+			</plugin>
 			<!-- config for jar -->
 			<!-- plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-jar-plugin</artifactId> 
 				<version>${plugins-jar-version}</version> <configuration> <archive> <manifest> 
