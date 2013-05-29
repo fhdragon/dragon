@@ -37,6 +37,7 @@ public abstract class AbstractQueue<T> implements Queue<T> {
 	 * 
 	 * @return the number of elements in this collection
 	 */
+	@Override
 	public abstract int size();
 
 	/**
@@ -45,6 +46,7 @@ public abstract class AbstractQueue<T> implements Queue<T> {
 	 * 
 	 * @return true if the queue is empty and false otherwise.
 	 */
+	@Override
 	public boolean isEmpty() {
 		return size() == 0;
 	}
@@ -55,6 +57,7 @@ public abstract class AbstractQueue<T> implements Queue<T> {
 	 * @return value of the element removed from the front of the queue.
 	 * @throws <tt>NoSuchElementException</tt> if the queue is empty.
 	 */
+	@Override
 	public abstract T pop();
 
 	/**
@@ -63,6 +66,7 @@ public abstract class AbstractQueue<T> implements Queue<T> {
 	 * @return value of element at the front of the queue.
 	 * @throws <tt>NoSuchElementException</tt> if the queue is empty.
 	 */
+	@Override
 	public abstract T peek();
 
 	// Modification Operations
@@ -72,15 +76,23 @@ public abstract class AbstractQueue<T> implements Queue<T> {
 	 * @param item
 	 *            insert item at the back of the queue
 	 */
-	public abstract void push(T item);
+	@Override
+	public abstract void offer(T item);
 
 	/**
 	 * Removes all of the elements from this collection (optional operation).
 	 * The collection will be empty after this method returns.
 	 */
+	@Override
 	public void clear() {
 		while (!isEmpty())
 			pop();
 	}
+	
+	/**
+	 * Removes all of the elements that non-use
+	 */
+	@Override
+	public abstract void release();
 
 }

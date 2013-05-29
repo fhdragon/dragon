@@ -12,7 +12,7 @@
     <!-- config for appender -->
     <!-- Begin:add Wenlong Meng at 2013/03/27 for commons -->
 	<appender name="debugAppender" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="/fhdragon/ws/logws/dagon/dragon-commons/debug.log" />
+		<param name="File" value="/fhdragon/ws/logws/dragon/dragon-commons/debug.log" />
 		<param name="Append" value="true" />
 		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
 		<layout class="org.apache.log4j.PatternLayout">
@@ -60,7 +60,7 @@
     <!-- End:add Wenlong Meng at 2013/03/27 for commons -->
     
     <root>
-        <appender-ref ref="rootApapender"/>
+        <appender-ref ref="rootAppender"/>
     </root>
 
 </log4j:configuration>

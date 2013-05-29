@@ -74,6 +74,10 @@ public class PriorityQueue<T> extends AbstractQueue<T> implements java.io.Serial
 	 */
 	private Comparator<T> comparator;
 	/**
+	 * true - already call release method, then call the offer method throw Exception
+	 */
+	private boolean release;
+	/**
 	 * Priority queue represented as a balanced binary heap: the two children of queue[n] are queue[2*n+1] and
 	 * queue[2*(n+1)]. The priority queue is ordered by comparator, or by the elements' natural ordering, if comparator
 	 * is null: For each node n in the heap and each descendant d of n, n <= d. The element with the lowest value is in
@@ -94,10 +98,29 @@ public class PriorityQueue<T> extends AbstractQueue<T> implements java.io.Serial
 	 *             if {@code initialCapacity} is less than 1
 	 */
 	public PriorityQueue(int offset, int limit) {
+		this(offset, limit, Integer.MAX_VALUE);
+	}
+	/**
+	 * Creates a {@code PriorityQueue} with the specified initial capacity that orders its elements according to their
+	 * {@linkplain Comparable natural ordering}.
+	 * 
+	 * @param offset
+	 *            the initial offset for this priority queue
+	 * @param limit
+	 *            the number of elements in this queue
+	 * @param maxLimit
+	 *            the max number of elements that offer
+	 * @throws IllegalArgumentException
+	 *             if {@code initialCapacity} is less than 1
+	 */
+	public PriorityQueue(int offset, int limit, int maxLimit) {
+		if (maxLimit < 0)
+			throw new IllegalArgumentException("Illegal maxLimit: " + maxLimit);
 		if (offset < 0)
 			throw new IllegalArgumentException("Illegal offset: " + offset);
 		if (limit < 1)
 			throw new IllegalArgumentException("Illegal limit: " + limit);
+		this.maxLimit = maxLimit;
 		this.offset = offset;
 		this.limit = limit;
 		this.queue = new Object[offset + limit];
@@ -152,20 +175,32 @@ public class PriorityQueue<T> extends AbstractQueue<T> implements java.io.Serial
 	 * 
 	 * @param e
 	 *            insert e at the back of the queue
+	 * @throws RuntimeException
 	 */
 	@Override
-	public void push(T e) {
+	public void offer(T e) {
+		check();
+		//non-null
 		if (e != null) {
-			// reset size
-			// this.size = reSize();
 			// store
 			this.queue[index] = e;
-			// modCount ++
+			this.maxLimit--;
 			modCount++;
-			// index ++
 			index++;
 			// sort
 			sort();
+		}
+	}
+
+	/**
+	 * check release
+	 */
+	private void check() {
+		if(this.modCount == -1){
+			throw new RuntimeException("already call release() method");
+		}
+		if(this.maxLimit < 0){
+			throw new RuntimeException("too many elements");
 		}
 	}
 
@@ -179,6 +214,19 @@ public class PriorityQueue<T> extends AbstractQueue<T> implements java.io.Serial
 			// Arrays.sort(this.queue, 0, reIndex() + 1, comparator);
 		} else {
 			// Arrays.sort(this.queue, 0, reIndex() + 1);
+		}
+	}
+	
+	/**
+	 * Removes all of the elements that non-use
+	 */
+	@Override
+	public void release() {
+		this.modCount = -1;
+		if(this.index < this.offset){
+			this.queue = Constants.EmptyObjectArray;
+		}else{
+			this.queue = java.util.Arrays.copyOfRange(this.queue, this.offset, this.index);
 		}
 	}
 

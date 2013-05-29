@@ -66,12 +66,17 @@ public interface Queue<T> {
 	 * @param item
 	 *            insert item at the back of the queue
 	 */
-	void push(T item);
+	void offer(T item);
 
 	/**
 	 * Removes all of the elements from this collection (optional operation).
 	 * The collection will be empty after this method returns.
 	 */
 	void clear();
+	
+	/**
+	 * Removes all of the elements that non-use
+	 */
+	void release();
 
 }

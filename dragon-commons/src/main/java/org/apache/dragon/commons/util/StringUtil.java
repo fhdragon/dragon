@@ -145,7 +145,7 @@ public final class StringUtil {
      *
      * @return  {@code true} if the string s1 equivalent to the string s2, {@code false} otherwise
      */
-	public static final boolean equals(String s1, String s2){
+	public static final boolean eq(String s1, String s2){
 		return s1 != null && s2 != null ? s1.intern() == s2.intern() : s1 == s2;
 	}
 	
@@ -161,8 +161,8 @@ public final class StringUtil {
 	 *
 	 * @return  {@code true} if the string s1 equivalent to the string s2, {@code false} otherwise
 	 */
-	public static final boolean equalsIngoreCase(String s1, String s2){
-		if(!equals(s1, s2)){
+	public static final boolean eqIngoreCase(String s1, String s2){
+		if(!eq(s1, s2)){
 			//only one is null, or length not equal
 			if(s1 == null || s2 == null || s1.length() != s2.length()){
 				return false;

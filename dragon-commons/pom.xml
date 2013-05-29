@@ -26,6 +26,11 @@
 			</exclusions>
 		</dependency>
 		<!-- End: add by Wenlong Meng at 2013/03/09 for excel -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.1.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

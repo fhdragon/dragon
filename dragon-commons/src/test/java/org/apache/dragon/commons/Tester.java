@@ -11,6 +11,8 @@ import java.lang.annotation.Target;
 
 import org.apache.dragon.commons.io.Out;
 
+import redis.clients.jedis.Jedis;
+
 /**
  * Tester: temp test
  * 
@@ -30,20 +32,13 @@ public class Tester {
 	 * @throws FileNotFoundException 
 	 */
 	public static void main(String[] args) throws FileNotFoundException {
-		String date = "77:13:06";
-		String[] ds = date.split(":");
-		
-		Out.outln(java.lang.String.class.getName());
-		Out.outln("/".equals("/"));
-		Annotation[] as = Test3.class.getAnnotations();
-		Annotation[] as1 = Test3.class.getDeclaredAnnotations();
-		Annotation[] as2 = as[0].getClass().getDeclaredAnnotations();
-		Annotation[] as3 = as[0].getClass().getAnnotations();
-		Out.outln(as);
-		Out.outln(as1);
-		Out.outln(as2);
-		Out.outln(as3);
-		Out.outln(as[0].getClass().getSuperclass());
+		Jedis jedis = new Jedis("localhost");
+	    jedis.connect();
+	    String email = jedis.get("email");
+	    System.out.println(email);
+	    jedis.set("name", "F.H Dragon");
+	    String name = jedis.get("name");
+	    System.out.println(name);
 	}
 	
 	//inner class 
