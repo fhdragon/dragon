@@ -1,4 +1,4 @@
-package jp.gummy.commons.collections;
+package org.apache.dragon.commons.set;
 
 import java.io.Serializable;
 import java.util.Collection;
