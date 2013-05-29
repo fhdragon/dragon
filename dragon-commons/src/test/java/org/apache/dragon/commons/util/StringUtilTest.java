@@ -87,10 +87,10 @@ public class StringUtilTest {
 	@Test
 	public void equals() {
 		logger.debug("Begin: equals()...");
-		assert false == StringUtil.equals("asd", "sdf");
-		assert false == StringUtil.equals("asd", "ASD");
-		assert true == StringUtil.equals("asd", "asd");
-		assert false == StringUtil.equals("asd", null);
+		assert false == StringUtil.eq("asd", "sdf");
+		assert false == StringUtil.eq("asd", "ASD");
+		assert true == StringUtil.eq("asd", "asd");
+		assert false == StringUtil.eq("asd", null);
 		
 		boolean result = true;
 		logger.debug("End: result = " + result);
@@ -102,10 +102,10 @@ public class StringUtilTest {
 	@Test
 	public void equalsIngoreCase() {
 		logger.debug("Begin: equalsIngoreCase()...");
-		assert false == StringUtil.equalsIngoreCase("asd", "sdf");
-		assert false == StringUtil.equalsIngoreCase("asd", null);
-		assert true == StringUtil.equalsIngoreCase("asd", "asd");
-		assert true == StringUtil.equalsIngoreCase("asd", "ASD");
+		assert false == StringUtil.eqIngoreCase("asd", "sdf");
+		assert false == StringUtil.eqIngoreCase("asd", null);
+		assert true == StringUtil.eqIngoreCase("asd", "asd");
+		assert true == StringUtil.eqIngoreCase("asd", "ASD");
 		
 		boolean result = true;
 		logger.debug("End: result = " + result);
