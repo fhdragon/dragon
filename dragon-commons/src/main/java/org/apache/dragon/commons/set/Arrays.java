@@ -1,5 +1,7 @@
 package org.apache.dragon.commons.set;
 
+import org.apache.commons.codec.binary.Hex;
+
 /**
  * Arrays: array utilities
  * 
@@ -78,6 +80,16 @@ public class Arrays {
 		for (int i = 0; i < n; i++, a++, b--){
 			swap(x, a, b);
 		}
+	}
+	
+	/**
+	 * toHex
+	 * 
+	 * @param s
+	 * @return
+	 */
+	public static String toHex(byte[] s){
+		return Hex.encodeHexString(s);
 	}
 	
 }

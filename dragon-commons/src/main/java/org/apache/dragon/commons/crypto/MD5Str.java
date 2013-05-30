@@ -1,9 +1,9 @@
 package org.apache.dragon.commons.crypto;
 
-import org.apache.commons.codec.binary.Hex;
+import org.apache.dragon.commons.set.Arrays;
 
 /**
- * ByteMD5: md5 for string
+ * MD5Str: md5 for string
  * 
  * @author Wenlong Meng(wenlong.meng@gmail.com)
  * @version 1.0 at May 30, 2013
@@ -15,7 +15,7 @@ public class MD5Str implements Digest<String> {
 	
 	//Constructor
 	/**
-	 * Creates a new <code>StrMD5</code> instance. 
+	 * Creates a new <code>MD5Str</code> instance. 
 	 */
 	public MD5Str(){
 		
@@ -31,7 +31,7 @@ public class MD5Str implements Digest<String> {
 	  */
 	@Override
 	public String digest(String t) {
-		return Hex.encodeHexString(Digests.MD5Byte.digest(t.getBytes()));
+		return Arrays.toHex(Digests.MD5Byte.digest(t.getBytes()));
 	}
 
 }

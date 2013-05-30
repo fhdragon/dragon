@@ -1,5 +1,7 @@
 package org.apache.dragon.commons.crypto;
 
+import org.apache.dragon.commons.set.Arrays;
+
 /**
  * CryptoDES: encrytor/decrytor by ByteDES
  * 
@@ -25,7 +27,7 @@ public class DESStr implements Crypto<String> {
 	 */
 	@Override
 	public String encrytor(String t) {
-		return new String(this.byteDES.encrytor(t.getBytes()));
+		return Arrays.toHex(this.byteDES.encrytor(t.getBytes()));
 	}
 
 	/**
@@ -38,7 +40,7 @@ public class DESStr implements Crypto<String> {
 	 */
 	@Override
 	public String decrytor(String t) {
-		return new String(this.byteDES.decrytor(t.getBytes()));
+		return Arrays.toHex(this.byteDES.decrytor(t.getBytes()));
 	}
 
 }
