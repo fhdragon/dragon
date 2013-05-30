@@ -1,15 +1,18 @@
 package org.apache.dragon.commons;
 
 import java.io.FileNotFoundException;
-import java.lang.annotation.Annotation;
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.security.MessageDigest;
+import java.util.Arrays;
 
-import org.apache.dragon.commons.io.Out;
+import org.apache.commons.codec.binary.Hex;
+import org.apache.dragon.commons.crypto.Crypto;
+import org.apache.dragon.commons.crypto.DESStr;
 
 import redis.clients.jedis.Jedis;
 
@@ -31,8 +34,12 @@ public class Tester {
 	 * @param args
 	 * @throws FileNotFoundException 
 	 */
-	public static void main(String[] args) throws FileNotFoundException {
-		System.out.println("/logout".equals("/logout"));
+	public static void main(String[] args) throws Exception {
+		byte[] s = MessageDigest.getInstance("MD5").digest("admin".getBytes());
+		System.out.println(Arrays.toString(s));
+		System.out.println(Hex.encodeHexString(s));
+//		Crypto<String> c = new StrDES();
+//		System.out.println(c.encrytor("WenlongMeng"));
 		Jedis jedis = new Jedis("localhost");
 	    jedis.connect();
 	    String email = jedis.get("email");
