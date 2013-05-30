@@ -1,7 +1,5 @@
 package org.apache.dragon.commons.crypto;
 
-import java.security.MessageDigest;
-
 import org.apache.commons.codec.binary.Hex;
 
 /**
