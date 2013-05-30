@@ -32,6 +32,7 @@ public class Tester {
 	 * @throws FileNotFoundException 
 	 */
 	public static void main(String[] args) throws FileNotFoundException {
+		System.out.println("/logout".equals("/logout"));
 		Jedis jedis = new Jedis("localhost");
 	    jedis.connect();
 	    String email = jedis.get("email");
