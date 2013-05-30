@@ -1,7 +1,7 @@
 package org.apache.dragon.commons.crypto;
 
 /**
- * Crypto: TODO
+ * Crypto: decrytor/encrytor
  * 
  * @author Wenlong Meng(wenlong.meng@gmail.com)
  * @version 1.0 at May 30, 2013
