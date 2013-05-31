@@ -12,6 +12,7 @@ import java.util.Arrays;
 
 import org.apache.commons.codec.binary.Hex;
 import org.apache.dragon.commons.crypto.Crypto;
+import org.apache.dragon.commons.crypto.Cryptos;
 import org.apache.dragon.commons.crypto.DESStr;
 
 import redis.clients.jedis.Jedis;
@@ -35,6 +36,8 @@ public class Tester {
 	 * @throws FileNotFoundException 
 	 */
 	public static void main(String[] args) throws Exception {
+		System.out.println(Cryptos.Base64Str.encrytor("admin"));
+		System.out.println(Cryptos.Base64Str.decrytor("YWRtaW4="));
 		byte[] s = MessageDigest.getInstance("MD5").digest("admin".getBytes());
 		System.out.println(Arrays.toString(s));
 		System.out.println(Hex.encodeHexString(s));

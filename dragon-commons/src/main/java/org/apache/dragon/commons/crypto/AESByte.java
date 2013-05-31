@@ -7,13 +7,13 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
 /**
- * CryptoDES: des for byte[]
+ * RSAByte: AES for byte[]
  * 
  * @author Wenlong Meng(wenlong.meng@gmail.com)
- * @version 1.0 at May 30, 2013
+ * @version 1.0 at May 31, 2013
  * @since 1.0
  */
-public class DESByte implements Crypto<byte[]> {
+public class AESByte implements Crypto<byte[]> {
 
 	//Local variables
 	private KeyGenerator keyGenerator;
@@ -22,11 +22,11 @@ public class DESByte implements Crypto<byte[]> {
 	/**
 	 * algorithm
 	 */
-	private static final String ALGORITHM = "DES";
+	private static final String ALGORITHM = "AES";
 	
 	//Constructor
 	@SuppressWarnings("restriction")
-	public DESByte(){
+	public AESByte(){
 		Security.addProvider(new com.sun.crypto.provider.SunJCE());
 		try {
 			keyGenerator = KeyGenerator.getInstance(ALGORITHM);
