@@ -1,5 +1,8 @@
 package org.apache.dragon.commons.crypto;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Digests: digest message utilities class
  * 
@@ -26,6 +29,23 @@ public abstract class Digests {
 	 * digest for byte[]
 	 */
 	public static Digest<String> SHAStr = new SHAStr();
+	/**
+	 * cache MD5Str digest
+	 */
+	private static Map<String, Digest<String>> md5StrDigest = new HashMap<String, Digest<String>>();
 	
+	//Logic
+	/**
+	 * Return MD5Str instance with salt
+	 * 
+	 * @param salt
+	 * @return
+	 */
+	public static Digest<String> getMD5Str(String salt){
+		if(!md5StrDigest.containsKey(salt)){
+			md5StrDigest.put(salt, new MD5Str(salt));
+		}
+		return md5StrDigest.get(salt);
+	}
 
 }

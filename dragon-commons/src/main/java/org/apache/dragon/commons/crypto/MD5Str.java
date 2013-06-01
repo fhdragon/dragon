@@ -12,6 +12,7 @@ import org.apache.dragon.commons.set.Arrays;
 public class MD5Str implements Digest<String> {
 
 	//Local variables
+	private String salt = "";
 	
 	//Constructor
 	/**
@@ -19,6 +20,14 @@ public class MD5Str implements Digest<String> {
 	 */
 	public MD5Str(){
 		
+	}
+	/**
+	 * Creates a new <code>MD5Str</code> instance with salt. 
+	 * 
+	 * @param salt
+	 */
+	public MD5Str(String salt){
+		this.salt = salt;
 	}
 
 	//Logic
@@ -31,7 +40,7 @@ public class MD5Str implements Digest<String> {
 	  */
 	@Override
 	public String digest(String t) {
-		return Arrays.hex(Digests.MD5Byte.digest(t.getBytes()));
+		return Arrays.hex(Digests.MD5Byte.digest((t + salt).getBytes()));
 	}
 
 }
