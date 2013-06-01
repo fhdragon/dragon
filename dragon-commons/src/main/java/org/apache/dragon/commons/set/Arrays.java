@@ -83,13 +83,42 @@ public class Arrays {
 	}
 	
 	/**
-	 * toHex
+	 * Converts an array of bytes into a string representing the hex values of each byte in order.
 	 * 
-	 * @param s
+	 * @param b
+	 * @return
+	 * @see {@link Hex#encodeHexString(byte[])}
+	 */
+	public static String hex(byte[] b){
+		return Hex.encodeHexString(b);
+	}
+	
+	/**
+	 * Converts a number value into an array of bytes
+	 * 
+	 * @param n
 	 * @return
 	 */
-	public static String toHex(byte[] s){
-		return Hex.encodeHexString(s);
+	public static byte[] bytes(long n){
+		byte[] result = new byte[8];
+		for(int i = result.length; i > 0;){
+			result[--i] = (byte)(n >> (i * 8));
+		}
+		return result;
+	}
+	
+	/**
+	 * Converts a number value into an array of bytes
+	 * 
+	 * @param n
+	 * @return
+	 */
+	public static byte[] bytes(int n){
+		byte[] result = new byte[4];
+		for(int i = result.length; i > 0;){
+			result[--i] = (byte)(n >> (i * 8));
+		}
+		return result;
 	}
 	
 }

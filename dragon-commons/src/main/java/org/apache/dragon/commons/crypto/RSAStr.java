@@ -31,7 +31,7 @@ public class RSAStr implements Crypto<String> {
 	  */
 	@Override
 	public String encrytor(String t) {
-		return Arrays.toHex(Cryptos.RSAByte.encrytor(t.getBytes()));
+		return Arrays.hex(Cryptos.RSAByte.encrytor(t.getBytes()));
 	}
 
 	/** 
@@ -43,7 +43,7 @@ public class RSAStr implements Crypto<String> {
 	  */
 	@Override
 	public String decrytor(String t) {
-		return Arrays.toHex(Cryptos.RSAByte.decrytor(t.getBytes()));
+		return Arrays.hex(Cryptos.RSAByte.decrytor(t.getBytes()));
 	}
 
 }

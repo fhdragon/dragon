@@ -1,7 +1,5 @@
 package org.apache.dragon.commons.util;
 
-import org.apache.commons.codec.binary.Hex;
-
 /**
  * Fast String Utilities. Operations on {@link java.lang.String} that are
  * {@code null} safe.
@@ -230,15 +228,6 @@ public final class StringUtil {
 		return result;
 	}
 	
-	/**
-	 * Converts an array of bytes into a string representing the hex values of each byte in order.
-	 * 
-	 * @param b
-	 * @return
-	 * @see {@link Hex#encodeHexString(byte[])}
-	 */
-	public static String hex(byte[] b){
-		return Hex.encodeHexString(b);
-	}
+	
 
 }

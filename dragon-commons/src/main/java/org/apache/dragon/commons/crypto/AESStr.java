@@ -31,7 +31,7 @@ public class AESStr implements Crypto<String> {
 	  */
 	@Override
 	public String encrytor(String t) {
-		return Arrays.toHex(Cryptos.AESByte.encrytor(t.getBytes()));
+		return Arrays.hex(Cryptos.AESByte.encrytor(t.getBytes()));
 	}
 
 	/** 
@@ -43,7 +43,7 @@ public class AESStr implements Crypto<String> {
 	  */
 	@Override
 	public String decrytor(String t) {
-		return Arrays.toHex(Cryptos.AESByte.decrytor(t.getBytes()));
+		return Arrays.hex(Cryptos.AESByte.decrytor(t.getBytes()));
 	}
 
 }

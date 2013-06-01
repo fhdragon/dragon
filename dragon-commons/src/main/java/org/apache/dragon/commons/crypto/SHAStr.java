@@ -31,7 +31,7 @@ public class SHAStr implements Digest<String> {
 	  */
 	@Override
 	public String digest(String t) {
-		return Arrays.toHex(Digests.SHAByte.digest(t.getBytes()));
+		return Arrays.hex(Digests.SHAByte.digest(t.getBytes()));
 	}
 
 }

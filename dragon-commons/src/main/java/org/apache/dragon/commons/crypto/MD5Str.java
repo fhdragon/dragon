@@ -31,7 +31,7 @@ public class MD5Str implements Digest<String> {
 	  */
 	@Override
 	public String digest(String t) {
-		return Arrays.toHex(Digests.MD5Byte.digest(t.getBytes()));
+		return Arrays.hex(Digests.MD5Byte.digest(t.getBytes()));
 	}
 
 }

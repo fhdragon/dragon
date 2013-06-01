@@ -27,7 +27,7 @@ public class DESStr implements Crypto<String> {
 	 */
 	@Override
 	public String encrytor(String t) {
-		return Arrays.toHex(this.byteDES.encrytor(t.getBytes()));
+		return Arrays.hex(this.byteDES.encrytor(t.getBytes()));
 	}
 
 	/**
@@ -40,7 +40,7 @@ public class DESStr implements Crypto<String> {
 	 */
 	@Override
 	public String decrytor(String t) {
-		return Arrays.toHex(this.byteDES.decrytor(t.getBytes()));
+		return Arrays.hex(this.byteDES.decrytor(t.getBytes()));
 	}
 
 }
