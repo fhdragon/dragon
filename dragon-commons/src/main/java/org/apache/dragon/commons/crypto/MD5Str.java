@@ -12,11 +12,11 @@ import org.apache.dragon.commons.set.Arrays;
 public class MD5Str implements Digest<String> {
 
 	//Local variables
-	private String salt = "dragon";
+	private String salt = "#{dragon}";
 	
 	//Constructor
 	/**
-	 * Creates a new <code>MD5Str</code> instance. 
+	 * Creates a new <code>MD5Str</code> instance with default salt. 
 	 */
 	public MD5Str(){
 		

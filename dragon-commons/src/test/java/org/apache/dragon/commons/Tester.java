@@ -38,9 +38,11 @@ public class Tester {
 	public static void main(String[] args) throws Exception {
 		System.out.println(Cryptos.Base64Str.encrytor("admin"));
 		System.out.println(Cryptos.Base64Str.decrytor("YWRtaW4="));
-		byte[] s = MessageDigest.getInstance("MD5").digest("admin{salt}".getBytes());
-		System.out.println(Arrays.toString(s));
+//		byte[] s = MessageDigest.getInstance("MD5").digest("admin{salt}".getBytes());
+		byte[] s = MessageDigest.getInstance("MD5").digest("1".getBytes());
 		System.out.println(Hex.encodeHexString(s));
+		byte[] s1 = MessageDigest.getInstance("MD5").digest("2".getBytes());
+		System.out.println(Hex.encodeHexString(s1));
 //		Crypto<String> c = new StrDES();
 //		System.out.println(c.encrytor("WenlongMeng"));
 		Jedis jedis = new Jedis("localhost");
