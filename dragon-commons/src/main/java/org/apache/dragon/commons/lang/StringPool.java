@@ -1,4 +1,4 @@
-package org.apache.dragon.commons.util;
+package org.apache.dragon.commons.lang;
 
 /**
  * StringPool: defined string of the sting pool
