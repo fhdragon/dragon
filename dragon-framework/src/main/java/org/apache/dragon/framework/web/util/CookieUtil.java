@@ -53,7 +53,7 @@ public class CookieUtil {
 	 * @param path path of the cookie to store
 	 * @param maxAge max age of the cookie to store
 	 */
-	public static final void add(HttpServletResponse res, String name, String value, String domain, int maxAge, String path) {
+	private static final void add(HttpServletResponse res, String name, String value, String domain, int maxAge, String path) {
 		//create cookie
 		Cookie cookie = new Cookie(name, value);
 		if(maxAge > -1){
@@ -70,23 +70,12 @@ public class CookieUtil {
 	}
 	
 	/**
-	 * Stores a cookie for current request. 
-	 * 
-	 * @param name the cookie to store
-	 */
-	public static final void add(Cookie cookie) {
-		//build cookie
-		HttpServletResponse res = WebContextUtils.getRes();
-		res.addCookie(cookie);
-	}
-	
-	/**
 	 * Stores a cookie for res. 
 	 * 
 	 * @param res 
 	 * @param cookie the cookie to store
 	 */
-	public static final void add(HttpServletResponse res, Cookie cookie) {
+	private static final void add(HttpServletResponse res, Cookie cookie) {
 		//build cookie
 		res.addCookie(cookie);
 	}
@@ -116,29 +105,6 @@ public class CookieUtil {
 		}
 		HttpServletResponse res = WebContextUtils.getRes();
 		add(res, name, value, domain, maxAge, path);
-	}
-	
-	/**
-	 * Stores a value in a cookie for current request. 
-	 * 
-	 * @param name name of the cookie to store
-	 * @param value value of the cookie to store
-	 * @param domain domain of the cookie to store
-	 * @param maxAge max age of the cookie to store
-	 */
-	public static final void add(String name, String value, String domain, int maxAge) {
-		add(name, value, domain, maxAge, null);
-	}
-	
-	/**
-	 * Stores a value in a cookie for current request. 
-	 * 
-	 * @param name name of the cookie to store
-	 * @param value value of the cookie to store
-	 * @param maxAge max age of the cookie to store
-	 */
-	public static final void add(String name, String value, int maxAge) {
-		add(name, value, null, maxAge, null);
 	}
 	
 	/**
@@ -187,7 +153,7 @@ public class CookieUtil {
 	 * @see #set
 	 * @see Cookie
 	 */
-	public static String get(HttpServletRequest req, String name) {
+	private static String get(HttpServletRequest req, String name) {
 		Cookie[] cookies = req.getCookies();
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
@@ -206,7 +172,7 @@ public class CookieUtil {
 	 * @param prefix the name of the cookies start with the specified prefix 
 	 * @return a <code>List<Cookie></code> that every Cookie 's name start with the specified prefix
 	 */
-	public static Map<String, String> gets(HttpServletRequest req, String prefix) {
+	private static Map<String, String> gets(HttpServletRequest req, String prefix) {
 		Cookie[] cookies = req.getCookies();
 		Map<String, String> result = new HashMap<String, String>();
 		if (cookies != null) {
@@ -217,6 +183,19 @@ public class CookieUtil {
 			}
 		}
 		return result;
+	}
+	
+	/**
+	 * remove the cookie associated with the name.
+	 * 
+	 * @param name the name of the cookies 
+	 * @return a <code>List<Cookie></code> that every Cookie 's name the specified
+	 */
+	public static void remove(String name) {
+		HttpServletResponse res = WebContextUtils.getRes();
+		Cookie cookie = new Cookie(name, "");
+		cookie.setMaxAge(0);
+		res.addCookie(cookie);
 	}
 
 }
