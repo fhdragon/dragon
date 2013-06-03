@@ -4,4 +4,12 @@
   <artifactId>dragon-login</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
+  
+  <dependencies>
+    <dependency>
+        <groupId>dragon</groupId>
+        <artifactId>dragon-framework</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
 </project>
