@@ -1,9 +1,9 @@
 package org.apache.dragon.commons.web;
 
-import org.apache.dragon.commons.lang.Filter;
+import org.apache.dragon.commons.lang.Codec;
 
 /**
- * StringFilter:  HTML filter utility.
+ * HTML filter utility.
  * Reserved Characters in HTML: Some characters are reserved in HTML and XHTML. 
  * HTML and XHTML processors must support the five special characters listed in the table below:
  *	----------------------------------------------------------------
@@ -19,7 +19,7 @@ import org.apache.dragon.commons.lang.Filter;
  * @version 1.0 at 2012/04/27
  * @since 1.0
  */
-public abstract class HtmlFilter {
+public abstract class HtmlCodec {
 	
 	//Logic
 	/**
@@ -32,7 +32,7 @@ public abstract class HtmlFilter {
 	 * @throws NullPointerException - if str is null
 	 */
 	public static String encode(String str){
-		return HtmlFilter.DefaultCharENUM.encode(str);
+		return HtmlCodec.DefaultChar2ENUM.encode(str);
 	}
 	
 	/**
@@ -42,7 +42,7 @@ public abstract class HtmlFilter {
 	 * @throws NullPointerException if str is null
 	 */
 	public static String decode(String str){
-		return HtmlFilter.DefaultCharENUM.decode(str);
+		return HtmlCodec.DefaultChar2ENUM.decode(str);
 	}
 	
 	//Implements
@@ -53,7 +53,7 @@ public abstract class HtmlFilter {
 	 * @version 1.0 at 2012/04/27
 	 * @since 1.0
 	 */
-	public static class CharNumStringFilter implements Filter<String> {
+	public static class Char2NumCodec implements Codec<String> {
 
 		// Logic
 		/**
@@ -148,13 +148,13 @@ public abstract class HtmlFilter {
 	}
 	
 	/**
-	 * CharNameStringFilter: char -> entity name
+	 * char -> entity name
 	 *
 	 * @author Wenlong Meng(wenlong.meng@gmail.com)
 	 * @version 1.0 at 2012/04/27
 	 * @since 1.0
 	 */
-	public static class CharNameStringFilter implements Filter<String> {
+	public static class Char2NameCodec implements Codec<String> {
 		
 		// Logic
 		/**
@@ -248,60 +248,10 @@ public abstract class HtmlFilter {
 	/**
 	 * Default char <-> Entity Number
 	 */
-	public static final Filter<String> DefaultCharENUM = new CharNumStringFilter();
+	public static final Codec<String> DefaultChar2ENUM = new Char2NumCodec();
 	/**
 	 * Default char <-> Entity Name
 	 */
-	public static final Filter<String> DefaultCharENM = new CharNameStringFilter();
+	public static final Codec<String> DefaultChar2ENM = new Char2NameCodec();
 	
-	//Test
-	/**
-	 * test...
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args){
-		String s = "&</school_name><major>理</major><faculty>情報系</fac>'\"&#60;\" is &amp;<\"asd";
-		String ss = "&#38;&#60;/school_name&#62;&#60;major&#62;理&#60;/major&#62;&#60;faculty&#62;情報系&#60;/fac&#62;&#39;&#34;&#38;#60;&#34; is &#38;amp;&#60;&#34;asd";
-		System.out.println("encode(String) : start " + System.nanoTime());
-		if(encode(s).intern() == ss){
-			System.out.println("encode(String) is ok");
-		}else{
-//			System.out.println("ss        = " + ss);
-//			System.out.println("encode(s) = " + encode(s));
-			throw new AssertionError("encode(String) is error");
-		}
-		System.out.println("encode(String) : stop " + System.nanoTime());
-		System.out.println("decode(String) : start " + System.nanoTime());
-		if(decode(ss).intern() == s){
-			System.out.println("decode(String) is ok");
-		}else{
-//			System.out.println(s);
-//			System.out.println(decode(ss));
-			throw new AssertionError("decode(String) is error");
-		}
-		System.out.println("decode(String) : stop " + System.nanoTime());
-		
-		s = "&</school_name><major>理</major><faculty>情報系</fac>'\"&#60;\" is &amp;<\"asd";
-		ss = "&amp;&lt;/school_name&gt;&lt;major&gt;理&lt;/major&gt;&lt;faculty&gt;情報系&lt;/fac&gt;&apos;&quot;&amp;#60;&quot; is &amp;amp;&lt;&quot;asd";
-		System.out.println("HtmlFilter.DefaultCharENM.encode(String) : start " + System.nanoTime());
-		if(HtmlFilter.DefaultCharENM.encode(s).intern() == ss){
-			System.out.println("encode(String) is ok");
-		}else{
-//			System.out.println("ss        = " + ss);
-//			System.out.println("encode(s) = " + HtmlFilter.DefaultCharENM.encode(s));
-			throw new AssertionError("encode(String) is error");
-		}
-		System.out.println("HtmlFilter.DefaultCharENM.encode(String) : stop " + System.nanoTime());
-		System.out.println("HtmlFilter.DefaultCharENM.decode(String) : start " + System.nanoTime());
-		if(HtmlFilter.DefaultCharENM.decode(ss).intern() == s){
-			System.out.println("decode(String) is ok");
-		}else{
-//			System.out.println(s);
-//			System.out.println(decode(ss));
-			throw new AssertionError("decode(String) is error");
-		}
-		System.out.println("HtmlFilter.DefaultCharENM.decode(String) : stop " + System.nanoTime());
-	}
-
 }

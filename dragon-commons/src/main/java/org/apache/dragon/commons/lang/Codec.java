@@ -1,13 +1,13 @@
 package org.apache.dragon.commons.lang;
 
 /**
- * StringFilter: String filter interface
+ * encode and decode interface
  * 
  * @author Wenlong Meng(wenlong.meng@gmail.com)
  * @version 1.0 at 2012/04/27
  * @since 1.0
  */
-public interface Filter<T> {
+public interface Codec<T> {
 
 	// Logic
 	/**
