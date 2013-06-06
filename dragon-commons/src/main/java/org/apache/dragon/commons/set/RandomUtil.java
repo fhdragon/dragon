@@ -1,4 +1,4 @@
-package jp.gummy.commons.lang;
+package org.apache.dragon.commons.set;
 
 import java.util.Random;
 

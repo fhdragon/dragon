@@ -26,16 +26,27 @@
 			</exclusions>
 		</dependency>
 		<!-- End: add by Wenlong Meng at 2013/03/09 for excel -->
+		<!-- Begin: add by Wenlong Meng at 2013/06/06 for java serialization -->
+		<dependency>
+			<groupId>com.esotericsoftware.kryo</groupId>
+			<artifactId>kryo</artifactId>
+			<version>2.21</version>
+		</dependency>
+		<!-- End: add by Wenlong Meng at 2013/06/06 for java serialization -->
+		<!-- Begin: add by Wenlong Meng at 2013/06/01 for redis -->
 		<dependency>
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
 			<version>2.1.0</version>
 		</dependency>
+		<!-- End: add by Wenlong Meng at 2013/06/01 for redis -->
+		<!-- Begin: add by Wenlong Meng at 2013/06/01 for base tool -->
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
 			<version>1.8</version>
 		</dependency>
+		<!-- End: add by Wenlong Meng at 2013/06/01 for base tool -->
 	</dependencies>
 
 	<build>
