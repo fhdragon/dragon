@@ -16,7 +16,7 @@ public interface Serialize {
 	 * @param o
 	 * @return
 	 */
-	<T> byte[] serialize(T o);
+	<T> byte[] write(T o);
 
 	/**
 	 * 反序列化bs为t类型对象
@@ -26,6 +26,6 @@ public interface Serialize {
 	 * @param t
 	 * @return
 	 */
-	<T> T deserialize(byte[] bs, Class<T> t);
+	<T> T read(byte[] bs, Class<T> t);
 
 }
