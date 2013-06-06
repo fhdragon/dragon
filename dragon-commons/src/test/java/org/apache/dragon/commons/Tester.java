@@ -51,12 +51,12 @@ public class Tester {
 		user.setId(1111);
 		user.setName("Wenlong Meng");
 		user.setBirth(new Date());
-		byte[] userBytes = s.serialize(user);
+		byte[] userBytes = s.write(user);
 		System.out.println(Arrays.toString(userBytes));
 		System.out.println(user);
 		Input input = new Input(userBytes);
 //		kryo.register(User.class);
-		User user1 = s.deserialize(userBytes, User.class);
+		User user1 = s.read(userBytes, User.class);
 		System.out.println(user1);
 		input.close();
 		
