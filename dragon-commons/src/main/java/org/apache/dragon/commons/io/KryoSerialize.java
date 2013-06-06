@@ -8,7 +8,7 @@ import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
 /**
- * KryoSerialize TODO
+ * KryoSerialize: serialize java pojo with kryo
  *
  * @author Wenlong Meng(wenlong.meng@gmail.com)
  * @version 1.0 at 2013-6-6
