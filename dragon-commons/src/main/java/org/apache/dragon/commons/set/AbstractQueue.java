@@ -31,53 +31,15 @@ public abstract class AbstractQueue<T> implements Queue<T> {
 
 	// Query Operations
 	/**
-	 * Returns the number of elements in this collection. If this collection
-	 * contains more than <tt>Integer.MAX_VALUE</tt> elements, returns
-	 * <tt>Integer.MAX_VALUE</tt>.
-	 * 
-	 * @return the number of elements in this collection
-	 */
-	@Override
-	public abstract int size();
-
-	/**
 	 * Return a boolean value that indicates whether the queue is empty. Return
 	 * true if empty and false if not empty.
 	 * 
 	 * @return true if the queue is empty and false otherwise.
 	 */
 	@Override
-	public boolean isEmpty() {
+	public boolean empty() {
 		return size() == 0;
 	}
-
-	/**
-	 * Remove the element at the front of the queue and return its value.
-	 * 
-	 * @return value of the element removed from the front of the queue.
-	 * @throws <tt>NoSuchElementException</tt> if the queue is empty.
-	 */
-	@Override
-	public abstract T pop();
-
-	/**
-	 * Return the value of the element at the front of the queue.
-	 * 
-	 * @return value of element at the front of the queue.
-	 * @throws <tt>NoSuchElementException</tt> if the queue is empty.
-	 */
-	@Override
-	public abstract T peek();
-
-	// Modification Operations
-	/**
-	 * Insert item at the back of the queue.
-	 * 
-	 * @param item
-	 *            insert item at the back of the queue
-	 */
-	@Override
-	public abstract void offer(T item);
 
 	/**
 	 * Removes all of the elements from this collection (optional operation).
@@ -85,14 +47,8 @@ public abstract class AbstractQueue<T> implements Queue<T> {
 	 */
 	@Override
 	public void clear() {
-		while (!isEmpty())
+		while (!empty())
 			pop();
 	}
-	
-	/**
-	 * Removes all of the elements that non-use
-	 */
-	@Override
-	public abstract void release();
 
 }

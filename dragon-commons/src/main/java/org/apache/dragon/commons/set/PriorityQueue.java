@@ -178,7 +178,7 @@ public class PriorityQueue<T> extends AbstractQueue<T> implements java.io.Serial
 	 * @throws RuntimeException
 	 */
 	@Override
-	public void offer(T e) {
+	public void push(T e) {
 		check();
 		//non-null
 		if (e != null) {
@@ -214,19 +214,6 @@ public class PriorityQueue<T> extends AbstractQueue<T> implements java.io.Serial
 			// Arrays.sort(this.queue, 0, reIndex() + 1, comparator);
 		} else {
 			// Arrays.sort(this.queue, 0, reIndex() + 1);
-		}
-	}
-	
-	/**
-	 * Removes all of the elements that non-use
-	 */
-	@Override
-	public void release() {
-		this.modCount = -1;
-		if(this.index < this.offset){
-			this.queue = Constants.EmptyObjectArray;
-		}else{
-			this.queue = java.util.Arrays.copyOfRange(this.queue, this.offset, this.index);
 		}
 	}
 

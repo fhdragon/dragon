@@ -41,7 +41,7 @@ public interface Queue<T> {
 	 * 
 	 * @return true if the queue is empty and false otherwise.
 	 */
-	boolean isEmpty();
+	boolean empty();
 
 	/**
 	 * Remove the element at the front of the queue and return its value.
@@ -66,17 +66,12 @@ public interface Queue<T> {
 	 * @param item
 	 *            insert item at the back of the queue
 	 */
-	void offer(T item);
+	int push(T item);
 
 	/**
 	 * Removes all of the elements from this collection (optional operation).
 	 * The collection will be empty after this method returns.
 	 */
 	void clear();
-	
-	/**
-	 * Removes all of the elements that non-use
-	 */
-	void release();
 
 }
