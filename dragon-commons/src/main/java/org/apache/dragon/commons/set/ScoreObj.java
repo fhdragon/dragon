@@ -56,8 +56,9 @@ public class ScoreObj {
 	/**
 	 * @return the obj
 	 */
-	public Object getObj() {
-		return obj;
+	@SuppressWarnings("unchecked")
+	public <T> T getObj() {
+		return (T)obj;
 	}
 	/**
 	 * @param obj the obj to set
