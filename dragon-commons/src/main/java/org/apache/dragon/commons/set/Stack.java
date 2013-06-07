@@ -41,7 +41,7 @@ public interface Stack<E> {
 	 * @return the <code>item</code> argument.
 	 * @see java.util.Vector#addElement
 	 */
-	long push(E item);
+	int push(E item);
 
 	/**
 	 * Removes the object at the top of this stack and returns that object as the value of this function.
@@ -80,6 +80,6 @@ public interface Stack<E> {
 	 * 
 	 * @return the number of elements in this collection
 	 */
-	long size();
+	int size();
 
 }
