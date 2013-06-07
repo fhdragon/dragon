@@ -1,5 +1,7 @@
 package org.apache.dragon.commons.io;
 
+import java.io.Serializable;
+
 /**
  * ObjectWrapper: wrap object
  * 
@@ -7,9 +9,10 @@ package org.apache.dragon.commons.io;
  * @version 1.0 at Jun 7, 2013
  * @since 1.0
  */
-public class ObjectWrapper {
+public class ObjectWrapper implements Serializable {
 
 	//Local variables
+	private static final long serialVersionUID = 4051695217550883613L;
 	/**
 	 * store object
 	 */
