@@ -32,13 +32,13 @@ public class DefaultSerializeTest {
 	public void serialize() {
 		logger.debug("Begin: serialize()...");
 		User user = new User();
-		user.setId(1111);
+		user.setId(333);
 		user.setName("Wenlong Meng");
 		user.setBirth(new Date());
 		Serialize s = new DefaultSerialize();
 		byte[] userBytes = s.write(user);
 		logger.debug(Arrays.toString(userBytes));
-		User user1 = s.read(userBytes, User.class);
+		User user1 = s.read(userBytes);
 		logger.debug("user = " + user);
 		logger.debug("user1 = " + user1);
 		boolean result = user.toString().equals(user1.toString());

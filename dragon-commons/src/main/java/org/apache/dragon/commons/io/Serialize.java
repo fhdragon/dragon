@@ -23,9 +23,8 @@ public interface Serialize {
 	 * 
 	 * @param <T>
 	 * @param bs
-	 * @param t
 	 * @return
 	 */
-	<T> T read(byte[] bs, Class<T> t);
+	<T> T read(byte[] bs);
 
 }

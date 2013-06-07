@@ -52,7 +52,7 @@ public class DefaultSerialize implements Serialize {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> T read(byte[] bs, Class<T> t){
+	public <T> T read(byte[] bs){
 		ByteArrayInputStream baos = new ByteArrayInputStream(bs);
 		ObjectInputStream input = null;
 		T result = null;

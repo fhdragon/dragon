@@ -47,16 +47,24 @@ public class Tester {
 	 */
 	public static void main(String[] args) throws Exception {
 		Serialize s = new KryoSerialize();
+		Obj obj = new Obj();
+		obj.setId(1);
+		Kryo kryo = new Kryo();
 		User user = new User();
 		user.setId(1111);
 		user.setName("Wenlong Meng");
 		user.setBirth(new Date());
-		byte[] userBytes = s.write(user);
+		obj.setO(user);
+		byte[] userBytes = s.write(obj);
 		System.out.println(Arrays.toString(userBytes));
 		System.out.println(user);
 		Input input = new Input(userBytes);
-//		kryo.register(User.class);
-		User user1 = s.read(userBytes, User.class);
+		kryo.register(User.class);
+		kryo.register(java.util.Date.class);
+		Obj o1 = (Obj)kryo.readObject(input, Obj.class);
+		System.out.println(obj);
+		System.out.println(o1);
+		User user1 = (User)o1.getO();
 		System.out.println(user1);
 		input.close();
 		
@@ -197,6 +205,57 @@ public class Tester {
 		public String toString() {
 			return "User [id=" + id + ", name=" + name + ", birth=" + birth + "]";
 		}
+		
+	}
+	
+	/**
+	 * Obj: TODO
+	 * 
+	 * @author Wenlong Meng(wenlong.meng@gmail.com)
+	 * @version 1.0 at Jun 7, 2013
+	 * @since 1.0
+	 */
+	public static class Obj{
+		private Object o;
+		private int id;
+		
+		/**
+		 * @return the o
+		 */
+		public Object getO() {
+			return o;
+		}
+		
+		/**
+		 * @param o the o to set
+		 */
+		public void setO(Object o) {
+			this.o = o;
+		}
+		
+		/**
+		 * @return the id
+		 */
+		public int getId() {
+			return id;
+		}
+		
+		/**
+		 * @param id the id to set
+		 */
+		public void setId(int id) {
+			this.id = id;
+		}
+
+		/** 
+		  * TODO
+		  * @see java.lang.Object#toString()
+		  */
+		@Override
+		public String toString() {
+			return "Obj [o=" + o + ", id=" + id + "]";
+		}
+		
 		
 	}
 

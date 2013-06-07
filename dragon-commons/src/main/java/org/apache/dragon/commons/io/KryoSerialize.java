@@ -30,7 +30,7 @@ public class KryoSerialize implements Serialize {
 	public <T> byte[] write(T o) {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		Output output = new Output(baos);
-		kryo.writeObject(output, o);
+		kryo.writeObject(output, new ObjectWrapper(o));
 		output.close();
 		try {
 			baos.close();
@@ -50,10 +50,11 @@ public class KryoSerialize implements Serialize {
 	 * @return
 	 */
 	@Override
-	public <T> T read(byte[] bs, Class<T> t){
+	public <T> T read(byte[] bs){
 		Input input = new Input(bs);
 //		kryo.register(t);
-		T result = kryo.readObject(input, t);
+		ObjectWrapper ow = kryo.readObject(input, ObjectWrapper.class);
+		T result = ow.getObj();
 		input.close();
 		return result;
 	}
