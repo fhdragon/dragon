@@ -1,4 +1,4 @@
-package jp.gummy.commons.io;
+package org.apache.dragon.commons.io;
 
 import java.io.InputStream;
 import java.net.URL;
