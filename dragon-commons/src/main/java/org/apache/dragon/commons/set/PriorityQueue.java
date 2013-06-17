@@ -178,7 +178,7 @@ public class PriorityQueue<T> extends AbstractQueue<T> implements java.io.Serial
 	 * @throws RuntimeException
 	 */
 	@Override
-	public void push(T e) {
+	public int push(T e) {
 		check();
 		//non-null
 		if (e != null) {
@@ -190,6 +190,7 @@ public class PriorityQueue<T> extends AbstractQueue<T> implements java.io.Serial
 			// sort
 			sort();
 		}
+		return 1;
 	}
 
 	/**

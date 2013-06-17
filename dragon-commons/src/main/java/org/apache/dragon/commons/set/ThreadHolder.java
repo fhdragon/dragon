@@ -27,6 +27,7 @@ public class ThreadHolder<T> implements Holder<T>{
 
 	/**
 	 * Bind the given T to the current thread.
+	 * 
 	 * @param t the T to expose,
 	 * or {@code null} to reset the thread-bound context
 	 * @return
@@ -42,6 +43,7 @@ public class ThreadHolder<T> implements Holder<T>{
 
 	/**
 	 * Return the T currently bound to the thread.
+	 * 
 	 * @return the T currently bound to the thread,
 	 * or {@code null} if none bound
 	 */
