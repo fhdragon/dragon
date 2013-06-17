@@ -7,7 +7,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static org.apache.dragon.commons.util.StringPool.*;
+import static org.apache.dragon.commons.lang.StringPool.*;
 
 import static org.apache.dragon.commons.util.StringUtil.*;
 
