@@ -1,17 +1,15 @@
 package org.apache.dragon.commons.set;
 
 /**
- * A collection designed for holding elements prior to their execution. The
- * collection stores elements with a first-in-first-out (FIFO) order. The
- * interface defines methods for insertion (push), extraction (pop) and
- * inspection (peek).
+ * A collection designed for holding elements prior to their execution. The collection stores elements with a
+ * first-in-first-out (FIFO) order. The interface defines methods for insertion (push), extraction (pop) and inspection
+ * (peek).
  * <p>
- * The remove() method removes and returns the element at the front of the stack
- * or throws an exception if the queue is empty. The peek() method returns the
- * value of the element at the front of the queue, but does not remove it.
+ * The remove() method removes and returns the element at the front of the stack or throws an exception if the queue is
+ * empty. The peek() method returns the value of the element at the front of the queue, but does not remove it.
  * <p>
- * A queue implementation may use a dynamically expanding storage structure that
- * allows for an unlimited number of element or fixed-length ("bounded") queue.
+ * A queue implementation may use a dynamically expanding storage structure that allows for an unlimited number of
+ * element or fixed-length ("bounded") queue.
  * 
  * <p>
  * This interface is a member of the Java Collections Framework.
@@ -27,17 +25,15 @@ public interface Queue<T> {
 
 	// Query Operations
 	/**
-	 * Returns the number of elements in this collection. If this collection
-	 * contains more than <tt>Integer.MAX_VALUE</tt> elements, returns
-	 * <tt>Integer.MAX_VALUE</tt>.
+	 * Returns the number of elements in this collection. If this collection contains more than
+	 * <tt>Integer.MAX_VALUE</tt> elements, returns <tt>Integer.MAX_VALUE</tt>.
 	 * 
 	 * @return the number of elements in this collection
 	 */
 	int size();
 
 	/**
-	 * Return a boolean value that indicates whether the queue is empty. Return
-	 * true if empty and false if not empty.
+	 * Return a boolean value that indicates whether the queue is empty. Return true if empty and false if not empty.
 	 * 
 	 * @return true if the queue is empty and false otherwise.
 	 */
@@ -69,9 +65,17 @@ public interface Queue<T> {
 	int push(T item);
 
 	/**
-	 * Removes all of the elements from this collection (optional operation).
-	 * The collection will be empty after this method returns.
+	 * Removes all of the elements from this collection (optional operation). The collection will be empty after this
+	 * method returns.
 	 */
 	void clear();
+
+	/**
+	 * Remove the specified member from this queue, If member was not a member of the set no operation is performed.
+	 * 
+	 * @param e
+	 * @return
+	 */
+	int remove(T e);
 
 }

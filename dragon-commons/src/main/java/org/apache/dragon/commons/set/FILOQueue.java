@@ -1,6 +1,6 @@
 package org.apache.dragon.commons.set;
 
-import java.util.Comparator;
+import java.util.Arrays;
 
 /**
  * An unbounded priority {@linkplain Queue queue} based on a priority heap. The elements of the priority queue are
@@ -38,7 +38,7 @@ import java.util.Comparator;
  * @version 1.0 at 2011/11/18
  * @since 1.0
  */
-public class PriorityQueue<T> extends AbstractQueue<T> implements java.io.Serializable {
+public class FILOQueue<T> extends AbstractQueue<T> implements java.io.Serializable {
 
 	// local variables
 	/**
@@ -46,84 +46,32 @@ public class PriorityQueue<T> extends AbstractQueue<T> implements java.io.Serial
 	 */
 	private static final long serialVersionUID = 7710105636604323922L;
 	/**
-	 * The number of elements in the priority queue.
+	 * The number of elements in the queue.
 	 */
 	private int size = 0;
-	/**
-	 * offset of this queue
-	 */
-	private int offset = 0;
-	/**
-	 * the number of elements in this queue
-	 */
-	private int limit = Integer.MAX_VALUE;
-	/**
-	 * the number of elements that pushed in this queue
-	 */
-	private int maxLimit = Integer.MAX_VALUE;
 	/**
 	 * The number of times this priority queue has been <i>structurally modified</i>. See AbstractList for gory details.
 	 */
 	private transient int modCount = 0;
 	/**
-	 * The index of element of this priority queue
-	 */
-	private transient int index = 0;
-	/**
-	 * The comparator, or null if priority queue uses elements' natural ordering.
-	 */
-	private Comparator<T> comparator;
-	/**
-	 * true - already call release method, then call the offer method throw Exception
-	 */
-	private boolean release;
-	/**
-	 * Priority queue represented as a balanced binary heap: the two children of queue[n] are queue[2*n+1] and
-	 * queue[2*(n+1)]. The priority queue is ordered by comparator, or by the elements' natural ordering, if comparator
-	 * is null: For each node n in the heap and each descendant d of n, n <= d. The element with the lowest value is in
-	 * queue[0], assuming the queue is nonempty.
+	 * The array buffer into which the elements of the queue are stored. The capacity of the queue is the length of this
+	 * array buffer.
 	 */
 	private transient Object[] queue;
 
 	// Constructor
 	/**
-	 * Creates a {@code PriorityQueue} with the specified initial capacity that orders its elements according to their
-	 * {@linkplain Comparable natural ordering}.
+	 * Constructs an empty queue with the specified initial capacity.
 	 * 
-	 * @param offset
-	 *            the initial offset for this priority queue
-	 * @param limit
-	 *            the number of elements in this queue
-	 * @throws IllegalArgumentException
-	 *             if {@code initialCapacity} is less than 1
+	 * @param initialCapacity
+	 *            the initial capacity of the list
+	 * @exception IllegalArgumentException
+	 *                if the specified initial capacity is negative
 	 */
-	public PriorityQueue(int offset, int limit) {
-		this(offset, limit, Integer.MAX_VALUE);
-	}
-	/**
-	 * Creates a {@code PriorityQueue} with the specified initial capacity that orders its elements according to their
-	 * {@linkplain Comparable natural ordering}.
-	 * 
-	 * @param offset
-	 *            the initial offset for this priority queue
-	 * @param limit
-	 *            the number of elements in this queue
-	 * @param maxLimit
-	 *            the max number of elements that offer
-	 * @throws IllegalArgumentException
-	 *             if {@code initialCapacity} is less than 1
-	 */
-	public PriorityQueue(int offset, int limit, int maxLimit) {
-		if (maxLimit < 0)
-			throw new IllegalArgumentException("Illegal maxLimit: " + maxLimit);
-		if (offset < 0)
-			throw new IllegalArgumentException("Illegal offset: " + offset);
-		if (limit < 1)
-			throw new IllegalArgumentException("Illegal limit: " + limit);
-		this.maxLimit = maxLimit;
-		this.offset = offset;
-		this.limit = limit;
-		this.queue = new Object[offset + limit];
+	public FILOQueue(int initCapacity) {
+		if (initCapacity < 0)
+			throw new IllegalArgumentException("Illegal Capacity: " + initCapacity);
+		this.queue = new Object[initCapacity];
 	}
 
 	// Query Operations
@@ -139,14 +87,6 @@ public class PriorityQueue<T> extends AbstractQueue<T> implements java.io.Serial
 	}
 
 	/**
-	 * @param comparator
-	 *            the comparator to set
-	 */
-	public void setComparator(Comparator<T> comparator) {
-		this.comparator = comparator;
-	}
-
-	/**
 	 * Remove the element at the front of the queue and return its value.
 	 * 
 	 * @return value of the element removed from the front of the queue.
@@ -154,7 +94,9 @@ public class PriorityQueue<T> extends AbstractQueue<T> implements java.io.Serial
 	 */
 	@Override
 	public T pop() {
-		return null;
+		T result = peek();
+		fastRemove(0);
+		return result;
 	}
 
 	/**
@@ -179,62 +121,64 @@ public class PriorityQueue<T> extends AbstractQueue<T> implements java.io.Serial
 	 */
 	@Override
 	public int push(T e) {
-		check();
-		//non-null
+		// non-null
 		if (e != null) {
+			resize(size);
 			// store
-			this.queue[index] = e;
-			this.maxLimit--;
+			this.queue[size] = e;
 			modCount++;
-			index++;
-			// sort
-			sort();
+			size++;
 		}
-		return 1;
+		return size;
 	}
 
 	/**
-	 * check release
-	 */
-	private void check() {
-		if(this.modCount == -1){
-			throw new RuntimeException("already call release() method");
-		}
-		if(this.maxLimit < 0){
-			throw new RuntimeException("too many elements");
-		}
-	}
-
-	/**
-	 * sort FIXME -O
+	 * Increases the capacity of this <tt>queue</tt> instance, if necessary, to ensure that it can hold at least the
+	 * number of elements specified by the minimum capacity argument.
 	 * 
-	 * @param index
+	 * @param minCapacity
+	 *            the desired minimum capacity
 	 */
-	private void sort() {
-		if (comparator != null) {
-			// Arrays.sort(this.queue, 0, reIndex() + 1, comparator);
-		} else {
-			// Arrays.sort(this.queue, 0, reIndex() + 1);
+	public void resize(int minCapacity) {
+		modCount++;
+		int oldCapacity = queue.length;
+		if (minCapacity > oldCapacity) {
+			int newCapacity = (oldCapacity * 3) / 2 + 1;
+			if (newCapacity < minCapacity)
+				newCapacity = minCapacity;
+			// minCapacity is usually close to size, so this is a win:
+			queue = Arrays.copyOf(queue, newCapacity);
 		}
 	}
-	
+
 	/**
 	 * Remove the specified member from this queue, If member was not a member of the set no operation is performed.
 	 * 
 	 * @param e
 	 * @return
 	 */
-	public int remove(T e){
+	public int remove(T e) {
 		if (e == null) {
-		    for (int i = 0; i < size; i++)
-			if (queue[i]==null)
-			    return i;
+			for (int i = 0; i < size; i++)
+				if (queue[i] == null)
+					return i;
 		} else {
-		    for (int i = 0; i < size; i++)
-			if (e.equals(queue[i]))
-			    return i;
+			for (int i = 0; i < size; i++)
+				if (e.equals(queue[i]))
+					return i;
 		}
 		return -1;
+	}
+
+	/**
+	 * Private remove method that skips bounds checking and does not return the value removed.
+	 */
+	private void fastRemove(int index) {
+		modCount++;
+		int numMoved = size - index - 1;
+		if (numMoved > 0)
+			System.arraycopy(queue, index + 1, queue, index, numMoved);
+		queue[--size] = null; // Let gc do its work
 	}
 
 }

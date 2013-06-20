@@ -48,6 +48,7 @@ public class Tester {
 	 * @throws FileNotFoundException 
 	 */
 	public static void main(String[] args) throws Exception {
+		System.out.println(new java.sql.Date(new java.util.Date().getTime()).toString());
 		try
         {
             File f = new File("test.xml");

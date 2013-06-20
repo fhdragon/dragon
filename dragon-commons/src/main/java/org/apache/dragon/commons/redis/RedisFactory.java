@@ -25,7 +25,7 @@ public class RedisFactory {
 	 * 
 	 * @return
 	 */
-	public JedisPool getPool(){
+	public static JedisPool getPool(){
 		return null;
 	}
 

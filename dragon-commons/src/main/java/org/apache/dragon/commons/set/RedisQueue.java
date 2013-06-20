@@ -3,6 +3,7 @@ package org.apache.dragon.commons.set;
 import org.apache.dragon.commons.io.KryoSerialize;
 import org.apache.dragon.commons.io.Serialize;
 import org.apache.dragon.commons.redis.RedisFactory;
+import org.apache.dragon.commons.util.StringUtil;
 
 import redis.clients.jedis.BinaryJedis;
 import redis.clients.jedis.Jedis;
@@ -53,10 +54,6 @@ public class RedisQueue<E> extends AbstractQueue<E> implements java.io.Serializa
 	 */
 	private static final long serialVersionUID = 7710105636604323922L;
 	/**
-	 * redis factory
-	 */
-	private RedisFactory redisFactory;
-	/**
 	 * redis pool
 	 */
 	private JedisPool pool;
@@ -72,7 +69,7 @@ public class RedisQueue<E> extends AbstractQueue<E> implements java.io.Serializa
 	// Constructor
 	/**
 	 * Creates a {@code PriorityQueue} with the specified initial key that orders its elements according to their
-	 * weight.
+	 * weight. default pool is {@link RedisFactory#getPool()}
 	 * 
 	 * @param key
 	 *            the initial key for redis
@@ -80,8 +77,24 @@ public class RedisQueue<E> extends AbstractQueue<E> implements java.io.Serializa
 	 *             if {@code initialCapacity} is less than 1
 	 */
 	public RedisQueue(String key) {
+		this(key, RedisFactory.getPool());
+	}
+	/**
+	 * Creates a {@code PriorityQueue} with the specified initial key that orders its elements according to their
+	 * weight.
+	 * 
+	 * @param key
+	 *            the initial key for redis
+	 * @param pool the pool of redis
+	 * @throws IllegalArgumentException
+	 *             if {@code initialCapacity} is less than 1
+	 */
+	public RedisQueue(String key, JedisPool pool) {
+		if(StringUtil.empty(key) || pool == null){
+			
+		}
 		this.key = SafeEncoder.encode(key);
-		pool = redisFactory.getPool();
+		this.pool = pool;
 	}
 
 	// Query Operations
@@ -149,6 +162,30 @@ public class RedisQueue<E> extends AbstractQueue<E> implements java.io.Serializa
 		byte[] bs = serialize.write(e);
 		long result = jedis.rpush(key, bs);
 		pool.returnResource(jedis);
+		return (int)result;
+	}
+	
+
+	/**
+	 * Remove the specified member from this queue, If member was not a member of the set no operation is performed.
+	 * 
+	 * @param e
+	 * @return
+	 */
+	@Override
+	public int remove(E e){
+		//get redis from redis pool
+		BinaryJedis jedis = pool.getResource();
+		long result = -1;
+		try{
+			//serialize object into byte[]
+			byte[] bs = serialize.write(e);
+			//remove byte[] into redis
+			result = jedis.lrem(key, 1, bs);
+		}finally{
+			//release resources
+			pool.returnResource(jedis);
+		}
 		return (int)result;
 	}
 

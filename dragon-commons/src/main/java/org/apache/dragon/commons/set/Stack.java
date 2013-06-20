@@ -10,13 +10,13 @@ package org.apache.dragon.commons.set;
  * When a stack is first created, it contains no items.
  * 
  * <p>
- * A more complete and consistent set of LIFO stack operations is provided by the {@link Deque} interface and its
+ * A more complete and consistent set of LIFO stack operations is provided by the {@link Stack} interface and its
  * implementations, which should be used in preference to this class. For example:
  * 
  * <pre>
  * {
  * 	&#064;code
- * 	Deque&lt;Integer&gt; stack = new ArrayDeque&lt;Integer&gt;();
+ * 	Stack&lt;Integer&gt; stack = new ArrayDeque&lt;Integer&gt;();
  * }
  * </pre>
  * 
@@ -81,5 +81,13 @@ public interface Stack<E> {
 	 * @return the number of elements in this collection
 	 */
 	int size();
+	
+	/**
+	 * Remove the specified member from this stack, If member was not a member of the set no operation is performed.
+	 * 
+	 * @param e
+	 * @return
+	 */
+	int remove(E e);
 
 }
