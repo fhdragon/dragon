@@ -1,9 +1,9 @@
 package org.apache.dragon.commons.crypto;
 
-import org.apache.dragon.commons.set.Arrays;
+import static org.apache.commons.codec.binary.Base64.*;
 
 /**
- * SHAStr: SHA for string
+ * :SHA for string
  * 
  * @author Wenlong Meng(wenlong.meng@gmail.com)
  * @version 1.0 at May 30, 2013
@@ -12,6 +12,7 @@ import org.apache.dragon.commons.set.Arrays;
 public class SHAStr implements Digest<String> {
 
 	//Local variables
+	private Digest<byte[]> digest = new SHAByte();
 	
 	//Constructor
 	/**
@@ -31,7 +32,7 @@ public class SHAStr implements Digest<String> {
 	  */
 	@Override
 	public String digest(String t) {
-		return Arrays.hex(Digests.SHAByte.digest(t.getBytes()));
+		return encodeBase64String(this.digest.digest(t.getBytes()));
 	}
 
 }

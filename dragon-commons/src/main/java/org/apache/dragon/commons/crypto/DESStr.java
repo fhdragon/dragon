@@ -1,9 +1,9 @@
 package org.apache.dragon.commons.crypto;
 
-import org.apache.dragon.commons.set.Arrays;
+import static org.apache.commons.codec.binary.Base64.*;
 
 /**
- * CryptoDES: encrytor/decrytor by ByteDES
+ * encrytor/decrytor by ByteDES
  * 
  * @author Wenlong Meng(wenlong.meng@gmail.com)
  * @version 1.0 at May 30, 2013
@@ -15,7 +15,23 @@ public class DESStr implements Crypto<String> {
 	/**
 	 * byte DES
 	 */
-	private Crypto<byte[]> byteDES = new DESByte();
+	private Crypto<byte[]> crypto;
+	
+	//Constructor
+		/**
+		 * Creates a new <code>DESStr</code> instance. 
+		 */
+		public DESStr(){
+			this(null);
+		}
+		/**
+		 * Creates a new <code>DESStr</code> instance with seed. 
+		 * 
+		 * @param seed
+		 */
+		public DESStr(String seed){
+			this.crypto = new DESByte(seed != null ? seed.getBytes() : null);
+		}
 
 	// Logic
 	/**
@@ -27,7 +43,7 @@ public class DESStr implements Crypto<String> {
 	 */
 	@Override
 	public String encrytor(String t) {
-		return Arrays.hex(this.byteDES.encrytor(t.getBytes()));
+		return encodeBase64String(this.crypto.encrytor(t.getBytes()));
 	}
 
 	/**
@@ -37,10 +53,11 @@ public class DESStr implements Crypto<String> {
 	 * @return
 	 * @see org.apache.dragon.commons.crypto.Crypto#decrytor(java.lang.Object)
 	 * @see #byteDES
+	 * @see Arrays#hex(String)
 	 */
 	@Override
 	public String decrytor(String t) {
-		return Arrays.hex(this.byteDES.decrytor(t.getBytes()));
+		return new String(this.crypto.decrytor(decodeBase64(t)));
 	}
 
 }

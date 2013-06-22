@@ -1,9 +1,9 @@
 package org.apache.dragon.commons.crypto;
 
-import org.apache.dragon.commons.set.Arrays;
+import static org.apache.commons.codec.binary.Base64.*;
 
 /**
- * MD5Str: md5 for string
+ * md5 for string
  * 
  * @author Wenlong Meng(wenlong.meng@gmail.com)
  * @version 1.0 at May 30, 2013
@@ -12,7 +12,8 @@ import org.apache.dragon.commons.set.Arrays;
 public class MD5Str implements Digest<String> {
 
 	//Local variables
-	private String salt = "#{dragon}";
+	private String salt = Helper.SEED;
+	private Digest<byte[]> digest = new MD5Byte();
 	
 	//Constructor
 	/**
@@ -40,7 +41,7 @@ public class MD5Str implements Digest<String> {
 	  */
 	@Override
 	public String digest(String t) {
-		return Arrays.hex(Digests.MD5Byte.digest((t + salt).getBytes()));
+		return encodeBase64String(this.digest.digest((t + salt).getBytes()));
 	}
 
 }

@@ -1,13 +1,16 @@
 package org.apache.dragon.commons.crypto;
 
-import java.security.Security;
+import java.security.PrivateKey;
+import java.security.PublicKey;
 
 import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
+
+import static org.apache.commons.codec.binary.Base64.*;
+import org.apache.dragon.commons.io.DefaultSerialize;
+import org.apache.dragon.commons.io.Serialize;
 
 /**
- * RSAByte: rsa for byte[]
+ * rsa for byte[]
  * 
  * @author Wenlong Meng(wenlong.meng@gmail.com)
  * @version 1.0 at May 30, 2013
@@ -16,25 +19,43 @@ import javax.crypto.SecretKey;
 public class RSAByte implements Crypto<byte[]> {
 
 	//Local variables
-	private KeyGenerator keyGenerator;
-	private SecretKey secretKey;
+	private PublicKey pubKey;
+	private PrivateKey priKey;
 	private Cipher cipher;
+	private Serialize s = new DefaultSerialize();
 	/**
 	 * algorithm
 	 */
 	private static final String ALGORITHM = "RSA";
+	/**
+	 * default crypto
+	 */
+	public static final Crypto<byte[]> DEFAULT = new RSAByte(decodeBase64(Helper.PRI_KEY), decodeBase64(Helper.PUB_KEY));
 	
 	//Constructor
-	@SuppressWarnings("restriction")
+	/**
+	 * Creates a new <code>RSAByte</code> instance. 
+	 */
 	public RSAByte(){
-		Security.addProvider(new com.sun.crypto.provider.SunJCE());
-		try {
-			keyGenerator = KeyGenerator.getInstance(ALGORITHM);
-			secretKey = this.keyGenerator.generateKey();
-			cipher = Cipher.getInstance(ALGORITHM);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
+		java.security.KeyPair kp = Helper.generateKeyPair(ALGORITHM);
+		this.priKey = kp.getPrivate();
+		this.pubKey = kp.getPublic();
+		this.cipher = Helper.cipher(ALGORITHM);
+	}
+	/**
+	 * Creates a new <code>RSAByte</code> instance with public key and private key. 
+	 * 
+	 * @param priKey
+	 * @param pubKey
+	 */
+	public RSAByte(byte[] priKey, byte[] pubKey){
+		if(priKey != null){
+			this.priKey = s.read(priKey);
 		}
+		if(pubKey != null){
+			this.pubKey = s.read(pubKey);
+		}
+		this.cipher = Helper.cipher(ALGORITHM);
 	}
 
 	//Logic
@@ -48,7 +69,7 @@ public class RSAByte implements Crypto<byte[]> {
 	@Override
 	public byte[] encrytor(byte[] t) {
 		try {
-			cipher.init(Cipher.ENCRYPT_MODE, this.secretKey);
+			cipher.init(Cipher.ENCRYPT_MODE, this.pubKey);
 			return cipher.doFinal(t);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -65,11 +86,29 @@ public class RSAByte implements Crypto<byte[]> {
 	@Override
 	public byte[] decrytor(byte[] t) {
 		try {
-			cipher.init(Cipher.DECRYPT_MODE, this.secretKey);
+			cipher.init(Cipher.DECRYPT_MODE, this.priKey);
 			return cipher.doFinal(t);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	/**
+	 * private Key
+	 * 
+	 * @return
+	 */
+	public byte[] privateKey(){
+		return s.write(this.priKey);
+	}
+	
+	/**
+	 * public Key
+	 * 
+	 * @return
+	 */
+	public byte[] publicKey(){
+		return s.write(this.pubKey);
 	}
 
 }

@@ -1,9 +1,9 @@
 package org.apache.dragon.commons.crypto;
 
-import org.apache.dragon.commons.set.Arrays;
+import static org.apache.commons.codec.binary.Base64.*;
 
 /**
- * RSAByte: rsa for string
+ * AES for string: see {@link AESByte}
  * 
  * @author Wenlong Meng(wenlong.meng@gmail.com)
  * @version 1.0 at May 30, 2013
@@ -12,13 +12,22 @@ import org.apache.dragon.commons.set.Arrays;
 public class AESStr implements Crypto<String> {
 
 	//Local variables
+	private Crypto<byte[]> crypto;
 	
 	//Constructor
 	/**
 	 * Creates a new <code>RSAStr</code> instance. 
 	 */
 	public AESStr(){
-		
+		this(null);
+	}
+	/**
+	 * Creates a new <code>RSAStr</code> instance with seed. 
+	 * 
+	 * @param seed
+	 */
+	public AESStr(String seed){
+		this.crypto = new AESByte(seed != null ? seed.getBytes() : null);
 	}
 
 	//Logic
@@ -31,7 +40,7 @@ public class AESStr implements Crypto<String> {
 	  */
 	@Override
 	public String encrytor(String t) {
-		return Arrays.hex(Cryptos.AESByte.encrytor(t.getBytes()));
+		return encodeBase64String(this.crypto.encrytor(t.getBytes()));
 	}
 
 	/** 
@@ -43,7 +52,7 @@ public class AESStr implements Crypto<String> {
 	  */
 	@Override
 	public String decrytor(String t) {
-		return Arrays.hex(Cryptos.AESByte.decrytor(t.getBytes()));
+		return new String(this.crypto.decrytor(decodeBase64(t)));
 	}
 
 }

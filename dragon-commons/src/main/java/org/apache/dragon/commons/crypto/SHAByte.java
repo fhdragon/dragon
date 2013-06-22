@@ -3,7 +3,7 @@ package org.apache.dragon.commons.crypto;
 import java.security.MessageDigest;
 
 /**
- * SHAByte: sha for byte[]
+ * sha for byte[]
  * 
  * @author Wenlong Meng(wenlong.meng@gmail.com)
  * @version 1.0 at May 30, 2013

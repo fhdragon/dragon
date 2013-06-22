@@ -3,7 +3,7 @@ package org.apache.dragon.commons.crypto;
 import java.security.MessageDigest;
 
 /**
- * MD5Byte: md5 for byte[]
+ * md5 for byte[]
  * 
  * @author Wenlong Meng(wenlong.meng@gmail.com)
  * @version 1.0 at May 30, 2013

@@ -3,7 +3,7 @@ package org.apache.dragon.commons.crypto;
 import org.apache.commons.codec.binary.Base64;
 
 /**
- * RSAByte: Base64 for string
+ * Base64 for string
  * 
  * @author Wenlong Meng(wenlong.meng@gmail.com)
  * @version 1.0 at May 31, 2013

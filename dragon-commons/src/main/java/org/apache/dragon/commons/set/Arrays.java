@@ -1,6 +1,7 @@
 package org.apache.dragon.commons.set;
 
 import org.apache.commons.codec.binary.Hex;
+import static org.apache.dragon.commons.util.StringUtil.*;
 
 /**
  * Arrays: array utilities
@@ -91,6 +92,27 @@ public class Arrays {
 	 */
 	public static String hex(byte[] b){
 		return Hex.encodeHexString(b);
+	}
+	
+	/**
+	 * Converts a string representing the hex values of each byte in order into  an array of bytes.
+	 * 
+	 * @param hex
+	 * @return
+	 */
+	public static byte[] hex(String hex){
+		if(blank(hex)){
+			return null;
+		}
+		if((hex.length() & 1) != 0){
+			throw new IllegalArgumentException(hex);
+		}
+		byte[] result = new byte[hex.length() >> 1];
+		for(int i = 0, counti = hex.length(); i < counti; i++){
+			int index = Character.digit(hex.charAt(i++), 16) * 16 + Character.digit(hex.charAt(i), 16);
+			result[i >> 1] = (byte)index;
+		}
+		return result;
 	}
 	
 	/**

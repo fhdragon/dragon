@@ -1,13 +1,10 @@
 package org.apache.dragon.commons.crypto;
 
-import java.security.Security;
-
 import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
 /**
- * CryptoDES: des for byte[]
+ * des for byte[]
  * 
  * @author Wenlong Meng(wenlong.meng@gmail.com)
  * @version 1.0 at May 30, 2013
@@ -16,7 +13,6 @@ import javax.crypto.SecretKey;
 public class DESByte implements Crypto<byte[]> {
 
 	//Local variables
-	private KeyGenerator keyGenerator;
 	private SecretKey secretKey;
 	private Cipher cipher;
 	/**
@@ -25,16 +21,18 @@ public class DESByte implements Crypto<byte[]> {
 	private static final String ALGORITHM = "DES";
 	
 	//Constructor
-	@SuppressWarnings("restriction")
+	/**
+	 * Creates a new <code>DESByte</code> instance. 
+	 */
 	public DESByte(){
-		Security.addProvider(new com.sun.crypto.provider.SunJCE());
-		try {
-			keyGenerator = KeyGenerator.getInstance(ALGORITHM);
-			secretKey = this.keyGenerator.generateKey();
-			cipher = Cipher.getInstance(ALGORITHM);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		this(null);
+	}
+	/**
+	 * Creates a new <code>DESByte</code> instance. 
+	 */
+	public DESByte(byte[] seed){
+		secretKey = Helper.generateKey(ALGORITHM, seed);
+		cipher = Helper.cipher(ALGORITHM);
 	}
 
 	//Logic

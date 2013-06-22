@@ -1,13 +1,10 @@
 package org.apache.dragon.commons.crypto;
 
-import java.security.Security;
-
 import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
 /**
- * RSAByte: AES for byte[]
+ * AES for byte[]
  * 
  * @author Wenlong Meng(wenlong.meng@gmail.com)
  * @version 1.0 at May 31, 2013
@@ -16,7 +13,6 @@ import javax.crypto.SecretKey;
 public class AESByte implements Crypto<byte[]> {
 
 	//Local variables
-	private KeyGenerator keyGenerator;
 	private SecretKey secretKey;
 	private Cipher cipher;
 	/**
@@ -25,16 +21,18 @@ public class AESByte implements Crypto<byte[]> {
 	private static final String ALGORITHM = "AES";
 	
 	//Constructor
-	@SuppressWarnings("restriction")
+	/**
+	 * Creates a new <code>AESByte</code> instance. 
+	 */
 	public AESByte(){
-		Security.addProvider(new com.sun.crypto.provider.SunJCE());
-		try {
-			keyGenerator = KeyGenerator.getInstance(ALGORITHM);
-			secretKey = this.keyGenerator.generateKey();
-			cipher = Cipher.getInstance(ALGORITHM);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		this(null);
+	}
+	/**
+	 * Creates a new <code>AESByte</code> instance with seed. 
+	 */
+	public AESByte(byte[] seed){
+		this.secretKey = Helper.generateKey(ALGORITHM, seed);
+		this.cipher = Helper.cipher(ALGORITHM);
 	}
 
 	//Logic
