@@ -57,12 +57,19 @@ public class Tester {
 	 * @throws FileNotFoundException 
 	 */
 	public static void main(String[] args) throws Exception {
-		Digest<String> d = new SHAStr();
-		System.out.println(d.digest("fhdragon"));
-		Crypto<String> c = new RSAStr();
-		String r = c.encrytor("fhdragon");
-		System.out.println(r);
-		System.out.println(new RSAStr(((RSAStr)c).privateKey(), ((RSAStr)c).publicKey()).decrytor(r));
+		Runtime.getRuntime().gc();
+		System.out.println(Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory());
+		int i = 1;
+		System.out.println(Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory());
+		Runtime.getRuntime().gc();
+		System.out.println(Runtime.getRuntime().exec("java"));
+		
+		//		Digest<String> d = new SHAStr();
+//		System.out.println(d.digest("fhdragon"));
+//		Crypto<String> c = new RSAStr();
+//		String r = c.encrytor("fhdragon");
+//		System.out.println(r);
+//		System.out.println(new RSAStr(((RSAStr)c).privateKey(), ((RSAStr)c).publicKey()).decrytor(r));
 		
 //		System.out.println(Arrays.toString(Helper.PUB_KEY));
 //		System.out.println(Base64.encodeBase64String(Helper.PUB_KEY));
