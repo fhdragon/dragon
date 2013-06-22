@@ -23,9 +23,12 @@ import org.apache.dragon.commons.crypto.AESStr;
 import org.apache.dragon.commons.crypto.Base64Str;
 import org.apache.dragon.commons.crypto.Crypto;
 import org.apache.dragon.commons.crypto.DESStr;
+import org.apache.dragon.commons.crypto.Digest;
 import org.apache.dragon.commons.crypto.Helper;
+import org.apache.dragon.commons.crypto.MD5Str;
 import org.apache.dragon.commons.crypto.RSAByte;
 import org.apache.dragon.commons.crypto.RSAStr;
+import org.apache.dragon.commons.crypto.SHAStr;
 import org.apache.dragon.commons.io.KryoSerialize;
 import org.apache.dragon.commons.io.Serialize;
 
@@ -54,10 +57,12 @@ public class Tester {
 	 * @throws FileNotFoundException 
 	 */
 	public static void main(String[] args) throws Exception {
-		Crypto<String> c = new DESStr("aaaaaa");
+		Digest<String> d = new SHAStr();
+		System.out.println(d.digest("fhdragon"));
+		Crypto<String> c = new RSAStr();
 		String r = c.encrytor("fhdragon");
 		System.out.println(r);
-		System.out.println(new DESStr("aaaaaa").decrytor(r));
+		System.out.println(new RSAStr(((RSAStr)c).privateKey(), ((RSAStr)c).publicKey()).decrytor(r));
 		
 //		System.out.println(Arrays.toString(Helper.PUB_KEY));
 //		System.out.println(Base64.encodeBase64String(Helper.PUB_KEY));

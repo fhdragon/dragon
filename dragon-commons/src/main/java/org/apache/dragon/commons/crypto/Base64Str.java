@@ -14,7 +14,11 @@ public class Base64Str implements Crypto<String> {
 	//Local variables
 	
 	//Constructor
+	/**
+	 * Creates a new <code>Base64Str</code> instance. 
+	 */
 	public Base64Str(){
+		
 	}
 
 	//Logic

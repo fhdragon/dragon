@@ -13,6 +13,7 @@ public class SHAStr implements Digest<String> {
 
 	//Local variables
 	private Digest<byte[]> digest = new SHAByte();
+	private String slat = Helper.SEED;
 	
 	//Constructor
 	/**
@@ -20,6 +21,12 @@ public class SHAStr implements Digest<String> {
 	 */
 	public SHAStr(){
 		
+	}
+	/**
+	 * Creates a new <code>SHAStr</code> instance with slat. 
+	 */
+	public SHAStr(String slat){
+		this.slat = slat;
 	}
 
 	//Logic
@@ -32,7 +39,7 @@ public class SHAStr implements Digest<String> {
 	  */
 	@Override
 	public String digest(String t) {
-		return encodeBase64String(this.digest.digest(t.getBytes()));
+		return encodeBase64String(this.digest.digest((this.slat + t).getBytes()));
 	}
 
 }
