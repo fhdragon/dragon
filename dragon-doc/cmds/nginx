@@ -1,0 +1,12 @@
+1. Install Nginx:
+   tar xvzf nginx-1.1.4.tar.gz
+   cd nginx-1.1.4
+   ./configure --prefix=/usr/local --with-http_ssl_module
+   make
+   sudo make install
+2. start ningx(Assuming that you have /usr/local in your $PATH(which nginx should say: /usr/local/sbin/nginx)):
+   sudo nginx
+3. chmod a+x build-nginx.sh
+   sudo ./build-nginx.sh
+   
+   

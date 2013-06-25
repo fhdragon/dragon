@@ -1,0 +1,17 @@
+1. ps axw -o pid,ppid,user,%cpu,vsz,wchan,command | egrep '(nginx|PID)'
+2. brew install lrzsz
+3. tail -10000 in.txt > out.txt
+   head -10000 in.txt > out.txt
+   sed -n '3,8p' in.txt
+   head -8 in.txt | tail -6
+   awk -F"\n" '{if(NR>=3&&NR<=8)print $0}' in.txt
+4. add path: vim ~/.base_profile
+    export PS1="\u@\h \w\$"
+    alias ll='ls -alF'
+    export JENKINS_HOME=/fhdragon/ws/mvnws/jenkins/.jenkins
+    export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
+    alias ls='ls -G'
+    export PS1="\u@\h \W$ "
+    [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+    PATH="/usr/bin:/bin:/usr/sbin:/usr/local:/usr/local/sbin:/usr/local/bin:/usr/X11/bin:/opt/X11/bin"
+5. 
