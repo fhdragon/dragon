@@ -1,0 +1,8 @@
+1. select * from table_name into outfile "/fhdragon/data/test1"
+2. mysql -ufhdragon -pmysql -p3360 -hx.x.x.x db_name -e"select * from table_name" > /fhdragon/data/test1
+3. tee /fhdragon/data/test
+   select * from table_name
+   exit
+4. 
+
+   
