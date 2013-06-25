@@ -1,8 +1,10 @@
 package org.apache.dragon.commons;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.annotation.Documented;
@@ -15,7 +17,9 @@ import java.lang.reflect.Array;
 import java.security.MessageDigest;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
@@ -57,12 +61,30 @@ public class Tester {
 	 * @throws FileNotFoundException 
 	 */
 	public static void main(String[] args) throws Exception {
-		Runtime.getRuntime().gc();
-		System.out.println(Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory());
-		int i = 1;
-		System.out.println(Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory());
-		Runtime.getRuntime().gc();
-		System.out.println(Runtime.getRuntime().exec("java"));
+		long st = System.currentTimeMillis();
+		BufferedReader fr = new BufferedReader(new FileReader(new File("/Users/wenlongmeng/Downloads/twitter_rv.net")));
+		Map<String, Integer> s = new HashMap<String, Integer>();
+		int i = 0;
+		String k;
+		while(i++<100000000){
+			k = fr.readLine().split("	")[0];
+			if(!s.containsKey(k)){
+				s.put(k, 1);
+			}else{
+				s.put(k, s.get(k) + 1);
+			}
+			System.out.println(i);
+		}
+		System.out.println(s.size() + ": " + s);
+		fr.close();
+		System.out.println("Cost: " + (System.currentTimeMillis() - st));
+		
+//		Runtime.getRuntime().gc();
+//		System.out.println(Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory());
+//		int i = 1;
+//		System.out.println(Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory());
+//		Runtime.getRuntime().gc();
+//		System.out.println(Runtime.getRuntime().exec("java"));
 		
 		//		Digest<String> d = new SHAStr();
 //		System.out.println(d.digest("fhdragon"));
