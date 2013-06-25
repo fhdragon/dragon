@@ -27,8 +27,8 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://127.0.0.1:3306/fhdragon" />
-		<property name="username" value="fhdragon" />
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/dragon" />
+		<property name="username" value="dragon" />
 		<property name="password" value="mysql" />
 	</bean>
 

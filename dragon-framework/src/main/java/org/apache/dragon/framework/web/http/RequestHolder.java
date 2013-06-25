@@ -18,8 +18,9 @@ package org.apache.dragon.framework.web.http;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.dragon.commons.set.Holder;
-import org.apache.dragon.commons.set.ThreadHolder;
+import org.apache.dragon.commons.lang.Holder;
+import org.apache.dragon.commons.lang.ThreadHolder;
+
 
 /**
  * Holder class to expose the web request in the form of a thread-bound
