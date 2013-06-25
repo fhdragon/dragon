@@ -1,0 +1,8 @@
+1. ps axw -o pid,ppid,user,%cpu,vsz,wchan,command | egrep '(nginx|PID)'
+2. brew install lrzsz
+3. tail -10000 in.txt > out.txt
+   head -10000 in.txt > out.txt
+   sed -n '3,8p' in.txt
+   head -8 in.txt | tail -6
+   awk -F"\n" '{if(NR>=3&&NR<=8)print $0}' in.txt
+4. 

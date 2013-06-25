@@ -1,0 +1,19 @@
+ps axw -o pid,ppid,user,%cpu,vsz,wchan,command | egrep '(nginx|PID)'
+
+Create a new repository on the command line
+touch README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/fhdragon/dragon-test.git
+git push -u origin master
+Push an existing repository from the command line
+git remote add origin https://github.com/fhdragon/dragon-test.git
+git push -u origin master
+
+eclipse get the origin file has been deleted or is not accessible
+
+sudo curl -OL h ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.13.tar.gz > /usr/local/src/pcre-8.13.tar.gz sudo mkdir -p /usr/local/src cd /usr/local/src tar xvzf pcre-8.13.tar.gz cd pcre-8.13 ./configure --prefix=/usr/local make sudo make install cd ..
+Install Nginx (You should still be in /usr/local/src, if you followed along from above.) tar xvzf nginx-1.1.4.tar.gz cd nginx-1.1.4 ./configure --prefix=/usr/local --with-http_ssl_module make sudo make install
+Start Nginx Assuming that you have /usr/local in your $PATH (which nginx should say:/usr/local/sbin/nginx), you can simply run: sudo nginx Note: to add /usr/local to your $PATH variable, edit or create ~/.profile to include it. For reference, mine currently looks like this: PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local:/usr/local/sbin:/usr/local/bin:/usr/X11/bin:/opt/X11/bin"– I emphasized in bold type what you need to add to your PATH.
+The 2 Minute way, using my script All of the above instructions, in a nice little script. Save it to your Mac as build-nginx.sh, open a new Terminal window and run: chmod a+x build-nginx.sh sudo ./build-nginx.sh

@@ -1,0 +1,18 @@
+hadoop
+mahout
+spark
+shark
+Bootstrap: 
+    http://twitter.github.io/bootstrap/getting-started.html
+    http://www.bootcss.com
+    http://bootstrap.jincon.com
+jquery:
+    http://jqueryui.com
+    http://jquery.com
+scala
+cdn:
+    https://developers.google.com/speed/libraries/devguide
+    http://www.asp.net/ajaxlibrary/cdn.ashx#jQuery_Releases_on_the_CDN_0
+    http://cdnjs.com/index.html
+data:
+    http://dumps.wikimedia.org
