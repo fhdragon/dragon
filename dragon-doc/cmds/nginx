@@ -6,7 +6,29 @@
    sudo make install
 2. start ningx(Assuming that you have /usr/local in your $PATH(which nginx should say: /usr/local/sbin/nginx)):
    sudo nginx
+   sudo nginx -s stop/quit/reload/reopen
 3. chmod a+x build-nginx.sh
    sudo ./build-nginx.sh
-   
+4. server module:
+        listen 8033;
+        server_name  localhost;
+        location / {
+            root   /fhdragon/projects/dragon/dragon-static;
+            index  index.html index.htm;
+        }
+
+5. #Begin:add by Wenlong Meng for projects
+    server {
+        listen  80;
+        server_name     static.blankhole.org;
+
+        location / {
+                proxy_pass http://static.blankhole.org;
+        }
+    }
+
+    upstream static.blankhole.org {
+        server 127.0.0.1:8033;
+    }
+    #End:add by Wenlong Meng for projects
    

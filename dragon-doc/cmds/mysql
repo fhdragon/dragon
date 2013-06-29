@@ -4,5 +4,5 @@
    select * from table_name
    exit
 4. LOAD DATA INFILE '/fhdragon/data/open data/twitter_rv_1y.txt' INTO TABLE user_followers FIELDS TERMINATED BY '\t' LINES  TERMINATED BY '\n';
-
+5. 
    
