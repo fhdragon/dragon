@@ -61,6 +61,15 @@ public class Tester {
 	 * @throws FileNotFoundException 
 	 */
 	public static void main(String[] args) throws Exception {
+		System.out.println("sdfsd [de] sdfsfddffdf".indexOf("[de]"));
+		System.out.println("sdfsd [de] sdfsfddffdf".replaceAll("\\[de] ", ""));
+		System.out.println(Arrays.toString("pl/.,;1".getBytes()));
+		byte[] bs = {1,127,-19};
+		char[] cs = {1,127,(char)-19};
+		System.out.println(new String(bs, "UTF-8"));
+		System.out.println(Arrays.toString(new String(bs).getBytes()));
+		System.out.println(new String(cs));
+		System.out.println(Arrays.toString(new String(cs).getBytes()));
 		System.out.println("sfsfdsdf" + "sss" == null ? "" : "aaaaaa");
 //		long st = System.currentTimeMillis();
 //		BufferedReader fr = new BufferedReader(new FileReader(new File("/Users/wenlongmeng/Downloads/twitter_rv.net")));

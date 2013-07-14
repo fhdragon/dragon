@@ -1,5 +1,6 @@
 package org.apache.dragon.commons.util;
 
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 

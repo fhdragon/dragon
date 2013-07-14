@@ -9,6 +9,10 @@
 		<artifactId>dragon-parent</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
+	
+	<properties>
+	   <jackson-2-version>2.2.0</jackson-2-version>
+	</properties>
 
 	<!-- dependencies jars -->
 	<dependencies>

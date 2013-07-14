@@ -1,0 +1,18 @@
+1. tomcat:
+
+2. nginx:
+    #Begin:add by Wenlong Meng for projects
+    server {
+        listen  80;
+        server_name     static.blankhole.org;
+
+        location / {
+                proxy_pass http://static.blankhole.org;
+        }
+    }
+
+    upstream static.blankhole.org {
+        server 127.0.0.1:8033;
+    }
+    #End:add by Wenlong Meng for projects
+3. 

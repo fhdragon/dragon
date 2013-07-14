@@ -222,7 +222,6 @@
 	<!-- build -->
 	<build>
 		<!-- for name -->
-		<finalName>dragon-parent</finalName>
 		<plugins>
 			<!-- Begin:add by Wenlong Meng at 2012/07/15 for compile -->
 			<plugin>
