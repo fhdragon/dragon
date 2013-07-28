@@ -32,12 +32,15 @@ public class DESStrTest {
 		Crypto<String> c = new DESStr();
 		String r = c.encrytor(s);
 		String rr = c.decrytor(r);
+		logger.debug("seed is null, r = " + r + ", rr = " + rr);
 		assert s.equals(rr);
 		
 		//with seed test
-		c = new DESStr("fhdragon");
+		String seed = "fhdragon";
+		c = new DESStr(seed);
 		r = c.encrytor(s);
 		rr = c.decrytor(r);
+		logger.debug("seed is " + seed + ", r = " + r + ", rr = " + rr);
 		assert s.equals(rr);
 		
 		boolean result = true;

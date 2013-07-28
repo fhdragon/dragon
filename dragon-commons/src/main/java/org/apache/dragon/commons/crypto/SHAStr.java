@@ -1,6 +1,7 @@
 package org.apache.dragon.commons.crypto;
 
-import static org.apache.commons.codec.binary.Base64.*;
+import org.apache.commons.codec.binary.Hex;
+import org.apache.dragon.commons.lang.StringPool;
 
 /**
  * :SHA for string
@@ -13,7 +14,7 @@ public class SHAStr implements Digest<String> {
 
 	//Local variables
 	private Digest<byte[]> digest = new SHAByte();
-	private String slat = Helper.SEED;
+	private String seed = StringPool.BLANK;
 	
 	//Constructor
 	/**
@@ -23,10 +24,12 @@ public class SHAStr implements Digest<String> {
 		
 	}
 	/**
-	 * Creates a new <code>SHAStr</code> instance with slat. 
+	 * Creates a new <code>SHAStr</code> instance with seed. 
 	 */
-	public SHAStr(String slat){
-		this.slat = slat;
+	public SHAStr(String seed){
+		if(seed != null){
+			this.seed = seed;
+		}
 	}
 
 	//Logic
@@ -39,7 +42,7 @@ public class SHAStr implements Digest<String> {
 	  */
 	@Override
 	public String digest(String t) {
-		return encodeBase64String(this.digest.digest((this.slat + t).getBytes()));
+		return Hex.encodeHexString(this.digest.digest((this.seed + t).getBytes()));
 	}
 
 }

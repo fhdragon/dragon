@@ -4,31 +4,22 @@ import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
 
 /**
- * AES for string: see {@link AESByte}
+ * Converts hexadecimal Strings. The charset used for certain operation can be set, the default is set in
+ * {@link #DEFAULT_CHARSET_NAME}
  * 
  * @author Wenlong Meng(wenlong.meng@gmail.com)
- * @version 1.0 at May 30, 2013
+ * @version 1.0 at July 27, 2013
  * @since 1.0
  */
-public class AESStr implements Crypto<String> {
+public class HexByte implements Crypto<byte[]> {
 
 	//Local variables
-	private Crypto<byte[]> crypto;
 	
 	//Constructor
 	/**
-	 * Creates a new <code>RSAStr</code> instance. 
+	 * Creates a new <code>HexByte</code> instance. 
 	 */
-	public AESStr(){
-		this(null);
-	}
-	/**
-	 * Creates a new <code>RSAStr</code> instance with seed. 
-	 * 
-	 * @param seed
-	 */
-	public AESStr(String seed){
-		this.crypto = new AESByte(seed);
+	public HexByte(){
 	}
 
 	//Logic
@@ -40,8 +31,8 @@ public class AESStr implements Crypto<String> {
 	  * @see org.apache.dragon.commons.crypto.Crypto#encrytor(java.lang.Object)
 	  */
 	@Override
-	public String encrytor(String t) {
-		return Hex.encodeHexString((this.crypto.encrytor(t.getBytes())));
+	public byte[] encrytor(byte[] t) {
+		return Hex.encodeHexString(t).getBytes();
 	}
 
 	/** 
@@ -52,9 +43,9 @@ public class AESStr implements Crypto<String> {
 	  * @see org.apache.dragon.commons.crypto.Crypto#decrytor(java.lang.Object)
 	  */
 	@Override
-	public String decrytor(String t) {
+	public byte[] decrytor(byte[] t) {
 		try {
-			return new String(this.crypto.decrytor(Hex.decodeHex(t.toCharArray())));
+			return Hex.decodeHex(new String(t).toCharArray());
 		} catch (DecoderException e) {
 			throw new RuntimeException(e);
 		}

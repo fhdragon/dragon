@@ -12,35 +12,28 @@ import org.junit.Test;
  * @version 1.0 at Jun 22, 2013
  * @since 1.0
  */
-public class AESStrTest {
+public class HexStrTest {
 
 	// Local variables
 	/**
 	 * logger
 	 */
-	private static Logger logger = Logger.getLogger(AESStrTest.class);
+	private static Logger logger = Logger.getLogger(HexStrTest.class);
 
 	// Logic
 	/**
 	 * test {@link RSAStr}
 	 */
 	@Test
-	public void aes() {
-		logger.debug("Begin: aes()...");
+	public void hex() {
+		logger.debug("Begin: hex()...");
 		//one time test
 		String s = "F.H Dragon";
-		Crypto<String> c = new AESStr();
+		Crypto<String> c = new HexStr();
 		String r = c.encrytor(s);
+		logger.debug("hex.encrytor: " + r);
 		String rr = c.decrytor(r);
-		logger.debug("seed is null, r = " + r + ", rr = " + rr);
-		assert s.equals(rr);
-		
-		//with seed test
-		String seed = "fhdragon";
-		c = new AESStr(seed);
-		r = c.encrytor(s);
-		rr = c.decrytor(r);
-		logger.debug("seed is " + seed + ", r = " + r + ", rr = " + rr);
+		logger.debug("hex.encrytor: " + r);
 		assert s.equals(rr);
 		
 		boolean result = true;

@@ -1,6 +1,7 @@
 package org.apache.dragon.commons.crypto;
 
-import static org.apache.commons.codec.binary.Base64.*;
+import org.apache.commons.codec.DecoderException;
+import org.apache.commons.codec.binary.Hex;
 
 /**
  * encrytor/decrytor by ByteDES
@@ -30,7 +31,7 @@ public class DESStr implements Crypto<String> {
 		 * @param seed
 		 */
 		public DESStr(String seed){
-			this.crypto = new DESByte(seed != null ? seed.getBytes() : null);
+			this.crypto = new DESByte(seed);
 		}
 
 	// Logic
@@ -43,7 +44,7 @@ public class DESStr implements Crypto<String> {
 	 */
 	@Override
 	public String encrytor(String t) {
-		return encodeBase64String(this.crypto.encrytor(t.getBytes()));
+		return Hex.encodeHexString(this.crypto.encrytor(t.getBytes()));
 	}
 
 	/**
@@ -57,7 +58,11 @@ public class DESStr implements Crypto<String> {
 	 */
 	@Override
 	public String decrytor(String t) {
-		return new String(this.crypto.decrytor(decodeBase64(t)));
+		try {
+			return new String(this.crypto.decrytor(Hex.decodeHex(t.toCharArray())));
+		} catch (DecoderException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }

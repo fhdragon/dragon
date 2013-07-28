@@ -30,7 +30,7 @@ public class DESByte implements Crypto<byte[]> {
 	/**
 	 * Creates a new <code>DESByte</code> instance. 
 	 */
-	public DESByte(byte[] seed){
+	public DESByte(String seed){
 		secretKey = Helper.generateKey(ALGORITHM, seed);
 		cipher = Helper.cipher(ALGORITHM);
 	}

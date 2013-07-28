@@ -1,6 +1,7 @@
 package org.apache.dragon.commons.crypto;
 
-import static org.apache.commons.codec.binary.Base64.*;
+import org.apache.commons.codec.DecoderException;
+import org.apache.commons.codec.binary.Hex;
 
 /**
  * rsa for string
@@ -13,10 +14,6 @@ public class RSAStr implements Crypto<String> {
 
 	//Local variables
 	private Crypto<byte[]> crypto;
-	/**
-	 * default crypto
-	 */
-	public static final Crypto<String> DEFAULT = new RSAStr(Helper.PRI_KEY, Helper.PUB_KEY);
 	
 	//Constructor
 	/**
@@ -32,7 +29,11 @@ public class RSAStr implements Crypto<String> {
 	 * @param pubKey
 	 */
 	public RSAStr(String priKey, String pubKey){
-		this.crypto = new RSAByte(decodeBase64(priKey), decodeBase64(pubKey));
+		try {
+			this.crypto = new RSAByte(Hex.decodeHex(priKey.toCharArray()), Hex.decodeHex(pubKey.toCharArray()));
+		} catch (DecoderException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	//Logic
@@ -45,7 +46,7 @@ public class RSAStr implements Crypto<String> {
 	  */
 	@Override
 	public String encrytor(String t) {
-		return encodeBase64String(this.crypto.encrytor(t.getBytes()));
+		return Hex.encodeHexString(this.crypto.encrytor(t.getBytes()));
 	}
 
 	/** 
@@ -57,7 +58,11 @@ public class RSAStr implements Crypto<String> {
 	  */
 	@Override
 	public String decrytor(String t) {
-		return new String(this.crypto.decrytor(decodeBase64(t)));
+		try {
+			return new String(this.crypto.decrytor(Hex.decodeHex(t.toCharArray())));
+		} catch (DecoderException e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 
@@ -67,7 +72,7 @@ public class RSAStr implements Crypto<String> {
 	 * @return
 	 */
 	public String privateKey(){
-		return encodeBase64String(((RSAByte)crypto).privateKey());
+		return Hex.encodeHexString(((RSAByte)crypto).privateKey());
 	}
 	
 	/**
@@ -76,7 +81,7 @@ public class RSAStr implements Crypto<String> {
 	 * @return
 	 */
 	public String publicKey(){
-		return encodeBase64String(((RSAByte)crypto).publicKey());
+		return Hex.encodeHexString(((RSAByte)crypto).publicKey());
 	}
 
 }

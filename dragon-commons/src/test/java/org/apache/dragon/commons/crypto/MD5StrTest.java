@@ -22,7 +22,7 @@ public class MD5StrTest {
 
 	// Logic
 	/**
-	 * test {@link SHAStr}
+	 * test {@link MD5Str}
 	 */
 	@Test
 	public void md5() {
@@ -31,7 +31,12 @@ public class MD5StrTest {
 		String s = "F.H Dragon";
 		Digest<String> d = new MD5Str();
 		String result = d.digest(s);
-		logger.debug("End: result = " + result);
+		logger.debug("seed is null, result = " + result);
+		String seed = "dragon";
+		d = new MD5Str(seed);
+		result = d.digest(s);
+		logger.debug("seed is " + seed + ", result = " + result);
+		logger.debug("End!");
 	}
 
 	/**

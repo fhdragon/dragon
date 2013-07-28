@@ -29,20 +29,25 @@ public class RSAStrTest {
 		logger.debug("Begin: rsa()...");
 		//one time test
 		String s = "F.H Dragon";
+		String seed = "";
 		Crypto<String> c = new RSAStr();
+		logger.debug("public key:" + ((RSAStr)c).publicKey());
+		logger.debug("private key:" + ((RSAStr)c).privateKey());
 		String r = c.encrytor(s);
 		String rr = c.decrytor(r);
+		logger.debug("seed = " + seed + ", r = " + r + ", rr = " + rr);
 		assert s.equals(rr);
+		
 		
 		//default test
-		c = RSAStr.DEFAULT;
-		r = c.encrytor(s);
-		rr = c.decrytor(r);
-		assert s.equals(rr);
 		
 		//with p key test
+		c = new RSAStr(((RSAStr)c).privateKey(), ((RSAStr)c).publicKey());
+		logger.debug("public key:" + ((RSAStr)c).publicKey());
+		logger.debug("private key:" + ((RSAStr)c).privateKey());
 		r = c.encrytor(s);
-		rr = new RSAStr(Helper.PRI_KEY, Helper.PUB_KEY).decrytor(r);
+		rr = c.decrytor(r);
+		logger.debug("seed = " + seed + ", r = " + r + ", rr = " + rr);
 		assert s.equals(rr);
 		
 		boolean result = true;

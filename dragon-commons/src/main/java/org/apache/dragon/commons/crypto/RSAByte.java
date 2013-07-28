@@ -5,7 +5,6 @@ import java.security.PublicKey;
 
 import javax.crypto.Cipher;
 
-import static org.apache.commons.codec.binary.Base64.*;
 import org.apache.dragon.commons.io.DefaultSerialize;
 import org.apache.dragon.commons.io.Serialize;
 
@@ -27,10 +26,6 @@ public class RSAByte implements Crypto<byte[]> {
 	 * algorithm
 	 */
 	private static final String ALGORITHM = "RSA";
-	/**
-	 * default crypto
-	 */
-	public static final Crypto<byte[]> DEFAULT = new RSAByte(decodeBase64(Helper.PRI_KEY), decodeBase64(Helper.PUB_KEY));
 	
 	//Constructor
 	/**

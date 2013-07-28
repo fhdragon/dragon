@@ -21,14 +21,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.crypto.SecretKey;
+
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.dragon.commons.crypto.AESStr;
 import org.apache.dragon.commons.crypto.Base64Str;
 import org.apache.dragon.commons.crypto.Crypto;
 import org.apache.dragon.commons.crypto.DESStr;
 import org.apache.dragon.commons.crypto.Digest;
 import org.apache.dragon.commons.crypto.Helper;
+import org.apache.dragon.commons.crypto.HexStr;
 import org.apache.dragon.commons.crypto.MD5Str;
 import org.apache.dragon.commons.crypto.RSAByte;
 import org.apache.dragon.commons.crypto.RSAStr;
@@ -61,6 +65,20 @@ public class Tester {
 	 * @throws FileNotFoundException 
 	 */
 	public static void main(String[] args) throws Exception {
+		System.out.println(new HexStr().encrytor("dragon"));
+		String seed = "dragon";
+		System.out.println(Arrays.toString(seed.getBytes()));
+		SecretKey sk =Helper.generateKey("AES", null);
+		System.out.println(Arrays.toString(sk.getEncoded()));
+		sk =Helper.generateKey("AES", seed);
+		System.out.println(Arrays.toString(sk.getEncoded()));
+		
+		
+		System.out.println(new HexStr().encrytor("Wenlong.Meng(wenlong.meng@gmail.com)"));
+		System.out.println(new HexStr().decrytor("57656e6c6f6e672e4d656e672877656e6c6f6e672e6d656e6740676d61696c2e636f6d29"));
+		System.out.println(Hex.encodeHexString("Wenlong.Meng(wenlong.meng@gmail.com)".getBytes()));
+		System.out.println(new String(Hex.decodeHex("57656e6c6f6e672e4d656e672877656e6c6f6e672e6d656e6740676d61696c2e636f6d29".toCharArray())));
+		System.out.println(DigestUtils.md5Hex("admin"));
 		System.out.println("sdfsd [de] sdfsfddffdf".indexOf("[de]"));
 		System.out.println("sdfsd [de] sdfsfddffdf".replaceAll("\\[de] ", ""));
 		System.out.println(Arrays.toString("pl/.,;1".getBytes()));

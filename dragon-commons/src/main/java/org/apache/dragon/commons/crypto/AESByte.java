@@ -30,7 +30,7 @@ public class AESByte implements Crypto<byte[]> {
 	/**
 	 * Creates a new <code>AESByte</code> instance with seed. 
 	 */
-	public AESByte(byte[] seed){
+	public AESByte(String seed){
 		this.secretKey = Helper.generateKey(ALGORITHM, seed);
 		this.cipher = Helper.cipher(ALGORITHM);
 	}

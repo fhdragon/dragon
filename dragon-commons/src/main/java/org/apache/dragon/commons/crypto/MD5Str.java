@@ -1,6 +1,8 @@
 package org.apache.dragon.commons.crypto;
 
-import static org.apache.commons.codec.binary.Base64.*;
+import org.apache.commons.codec.binary.Hex;
+
+import static org.apache.dragon.commons.lang.StringPool.BLANK;;
 
 /**
  * md5 for string
@@ -12,7 +14,7 @@ import static org.apache.commons.codec.binary.Base64.*;
 public class MD5Str implements Digest<String> {
 
 	//Local variables
-	private String salt = Helper.SEED;
+	private String seed = BLANK;
 	private Digest<byte[]> digest = new MD5Byte();
 	
 	//Constructor
@@ -23,12 +25,14 @@ public class MD5Str implements Digest<String> {
 		
 	}
 	/**
-	 * Creates a new <code>MD5Str</code> instance with salt. 
+	 * Creates a new <code>MD5Str</code> instance with seed. 
 	 * 
-	 * @param salt
+	 * @param seed
 	 */
-	public MD5Str(String salt){
-		this.salt = salt;
+	public MD5Str(String seed){
+		if(seed != null){
+			this.seed = seed;
+		}
 	}
 
 	//Logic
@@ -41,7 +45,7 @@ public class MD5Str implements Digest<String> {
 	  */
 	@Override
 	public String digest(String t) {
-		return encodeBase64String(this.digest.digest((t + salt).getBytes()));
+		return Hex.encodeHexString(this.digest.digest((t + seed).getBytes()));
 	}
 
 }

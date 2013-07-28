@@ -49,7 +49,7 @@ public class RedisPriorityQueue extends AbstractQueue<ScoreObj> implements java.
 	/**
 	 * redis factory
 	 */
-	private JedisPool pool = null;
+	private transient JedisPool pool = null;
 
 	// Constructor
 	/**
