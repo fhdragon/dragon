@@ -54,7 +54,7 @@ public class StringUtilTest {
 	}
 	
 	/**
-	 * test {@link StringUtil#num(String)}}
+	 * test {@link StringUtil#isNum(String)}}
 	 */
 	@Test
 	public void num() {
@@ -68,14 +68,14 @@ public class StringUtilTest {
 	}
 	
 	/**
-	 * test {@link StringUtil#num(String)}}
+	 * test {@link StringUtil#isNum(String)}}
 	 */
 	@Test
 	public void isNum() {
 		logger.debug("Begin: toInt()...");
-		assert false == StringUtil.num(" 333 ");
-		assert true == StringUtil.num("333");
-		assert false == StringUtil.num("fhdragon");
+		assert false == StringUtil.isNum(" 333 ");
+		assert true == StringUtil.isNum("333");
+		assert false == StringUtil.isNum("fhdragon");
 		
 		boolean result = true;
 		logger.debug("End: result = " + result);

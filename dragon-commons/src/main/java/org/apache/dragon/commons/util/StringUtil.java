@@ -68,7 +68,7 @@ public final class StringUtil {
 	 * @return <code>true</code> if the string is a digit; <code>false</code> otherwise.
 	 * @see java.lang.Character#isDigit(char)
 	 */
-	public static final boolean num(String str) {
+	public static final boolean isNum(String str) {
 		// way1: toCharArray
 		// for (char c : str.toCharArray()) {//new char[]
 		// if (!Character.isDigit(c)) {
@@ -227,7 +227,5 @@ public final class StringUtil {
 		int[] result = splitInt(str, r, defaultVal);
 		return result;
 	}
-	
-	
 
 }
