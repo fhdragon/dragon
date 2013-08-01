@@ -2,7 +2,6 @@ package org.apache.dragon.commons.set;
 
 import org.apache.dragon.commons.io.KryoSerialize;
 import org.apache.dragon.commons.io.Serialize;
-import org.apache.dragon.commons.redis.RedisFactory;
 
 import redis.clients.jedis.BinaryJedis;
 import redis.clients.jedis.Jedis;
@@ -53,13 +52,9 @@ public class RedisStack<E> extends AbstractStack<E> implements java.io.Serializa
 	 */
 	private static final long serialVersionUID = 7710105636604323922L;
 	/**
-	 * redis factory
-	 */
-	private RedisFactory redisFactory;
-	/**
 	 * redis pool
 	 */
-	private JedisPool pool;
+	private transient JedisPool pool;
 	/**
 	 * key
 	 */
@@ -71,19 +66,13 @@ public class RedisStack<E> extends AbstractStack<E> implements java.io.Serializa
 
 	// Constructor
 	/**
-	 * Creates a {@code PriorityQueue} with the specified initial key that orders its elements according to their
-	 * weight.
-	 * 
-	 * @param key
-	 *            the initial key for redis
-	 * @throws IllegalArgumentException
-	 *             if {@code initialCapacity} is less than 1
+	 * Creates a {@code RedisStack}
 	 */
-	public RedisStack(String key) {
-		this(key, RedisFactory.getPool());
+	public RedisStack(){
+		
 	}
 	/**
-	 * Creates a {@code PriorityQueue} with the specified initial key that orders its elements according to their
+	 * Creates a {@code RedisStack} with the specified initial key that orders its elements according to their
 	 * weight.
 	 * 
 	 * @param key

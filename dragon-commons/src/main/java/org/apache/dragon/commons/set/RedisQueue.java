@@ -56,7 +56,7 @@ public class RedisQueue<E> extends AbstractQueue<E> implements java.io.Serializa
 	/**
 	 * redis pool
 	 */
-	private JedisPool pool;
+	private transient JedisPool pool;
 	/**
 	 * key
 	 */
