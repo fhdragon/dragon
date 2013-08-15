@@ -33,7 +33,7 @@ public final class StringUtil {
 	 * @return an <code>int</code> value holding the value represented by the string argument. return defaultVal if
 	 *         NumberFormatException error occur.
 	 */
-	public static final int num(String str, int defaultVal) {
+	public static int num(String str, int defaultVal) {
 		try {
 			return Integer.parseInt(str);
 		} catch (Exception e) {
@@ -68,7 +68,7 @@ public final class StringUtil {
 	 * @return <code>true</code> if the string is a digit; <code>false</code> otherwise.
 	 * @see java.lang.Character#isDigit(char)
 	 */
-	public static final boolean isNum(String str) {
+	public static boolean isNum(String str) {
 		// way1: toCharArray
 		// for (char c : str.toCharArray()) {//new char[]
 		// if (!Character.isDigit(c)) {
@@ -107,7 +107,7 @@ public final class StringUtil {
 	 *            the String to check, may be null
 	 * @return <code>true</code> if the String is empty or null
 	 */
-	public static final boolean empty(String str) {
+	public static boolean empty(String str) {
 		return str == null || str.length() == 0;
 	}
 
@@ -129,7 +129,7 @@ public final class StringUtil {
 	 * @return <code>true</code> if the String is null, empty or whitespace
 	 * @since 2.0
 	 */
-	public static final boolean blank(String str) {
+	public static boolean blank(String str) {
 		return str == null || str.trim().length() == 0;
 	}
 	
@@ -145,7 +145,7 @@ public final class StringUtil {
      *
      * @return  {@code true} if the string s1 equivalent to the string s2, {@code false} otherwise
      */
-	public static final boolean eq(String s1, String s2){
+	public static boolean eq(String s1, String s2){
 		return s1 != null && s2 != null ? s1.intern() == s2.intern() : s1 == s2;
 	}
 	
@@ -161,7 +161,7 @@ public final class StringUtil {
 	 *
 	 * @return  {@code true} if the string s1 equivalent to the string s2, {@code false} otherwise
 	 */
-	public static final boolean eqIngoreCase(String s1, String s2){
+	public static boolean eqIngoreCase(String s1, String s2){
 		if(!eq(s1, s2)){
 			//only one is null, or length not equal
 			if(s1 == null || s2 == null || s1.length() != s2.length()){
@@ -183,10 +183,10 @@ public final class StringUtil {
      *
      * @throws NullPointerException if the str is null
      */
-	public static final int[] splitInt(String str){
+	public static int[] splitInt(String str){
 		return splitInt(str, ",");
 	}
-	public static final int[] splitInt(String str, String regex){
+	public static int[] splitInt(String str, String regex){
 		return splitInt(str, regex, Integer.MIN_VALUE);
 	}
 	
@@ -199,7 +199,7 @@ public final class StringUtil {
 	 * @return
 	 * @throws NullPointerException if str or regex is null
 	 */
-	public static final int[] splitInt(String str, String regex, int defaultVal){
+	public static int[] splitInt(String str, String regex, int defaultVal){
 		String[] strs = str.split(regex);
 		int[] result = new int[strs.length];
 		int i = 0;
@@ -216,10 +216,10 @@ public final class StringUtil {
 	 * @param regex
 	 * @return
 	 */
-	public static final int[] splitInt(String str, String[] regex){
+	public static int[] splitInt(String str, String[] regex){
 		return splitInt(str, regex, Integer.MIN_VALUE);
 	}
-	public static final int[] splitInt(String str, String[] regex, int defaultVal){
+	public static int[] splitInt(String str, String[] regex, int defaultVal){
 		String r = regex[0];
 		for(int i = 1, counti = regex.length; i < counti; i++){
 			str = str.replaceAll(regex[i], r);
