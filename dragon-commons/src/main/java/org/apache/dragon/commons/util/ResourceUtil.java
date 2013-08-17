@@ -20,53 +20,18 @@ public class ResourceUtil {
 	 * @param fn 资源文件名称
 	 * @return
 	 */
-	public static Map<String, String> loadResource(String fn) {
-		if(fn.endsWith(".properties")){
-			return loadProps(fn);
-		}else if(fn.endsWith(".xml")){
-			return loadXmls(fn);
-		}
-		return null;
-	}
-	
-	/**
-	 * 默认加载classpath下props资源文件
-	 * 
-	 * @param props
-	 *            指定的.properties结构的文档
-	 * @return
-	 */
-	public static Map<String, String> loadProps(String props) {
+	public static Map<String, String> parser(String fn) {
 		// 从classpath下面加载资源文件
 		Properties _props = new Properties();
 		try {
-			InputStream in = ResourceUtil.class.getResourceAsStream(props);
-			_props.load(in);
+			InputStream in = ResourceUtil.class.getResourceAsStream(fn);
+			if(fn.endsWith(".properties")){
+				_props.load(in);
+			}else if(fn.endsWith(".xml")){
+				_props.loadFromXML(in);
+			}
 		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		Map<String, String> map = new HashMap<String, String>();
-		for(Map.Entry<Object, Object> entry : _props.entrySet()){
-			map.put((String)entry.getKey(), (String)entry.getValue());
-		}
-		return map;
-	}
-	
-	/**
-	 * 默认加载classpath下xmlFile配置文件
-	 * 
-	 * @param xmlFile
-	 *            指定的xml结构的文档
-	 * @return
-	 */
-	public static Map<String, String> loadXmls(String props) {
-		Properties _props = new Properties();
-		try {
-			// 从classpath下面加载资源文件
-			InputStream in = ResourceUtil.class.getResourceAsStream(props);
-			_props.loadFromXML(in);
-		} catch (Exception e) {
-			e.printStackTrace();
+			throw new RuntimeException("load file err: " + fn, e);
 		}
 		Map<String, String> map = new HashMap<String, String>();
 		for(Map.Entry<Object, Object> entry : _props.entrySet()){
