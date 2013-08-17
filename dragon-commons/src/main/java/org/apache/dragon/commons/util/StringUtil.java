@@ -227,5 +227,35 @@ public final class StringUtil {
 		int[] result = splitInt(str, r, defaultVal);
 		return result;
 	}
+	
+	/**
+	 * Converts all of the characters in this <code>String</code> to lower
+     * case using the rules of the given <code>Default Locale</code>.
+	 * 
+	 * @param s
+	 * @return
+	 */
+	public static String lower(String s){
+		char[] result = s.toCharArray();
+		for(int i = 0, counti = result.length; i < counti; i++){
+			result[i] = CharUtil.lower(result[i]);
+		}
+		return new String(result);
+	}
+	
+	/**
+	 * Converts all of the characters in this <code>String</code> to upper
+	 * case using the rules of the given <code>Default Locale</code>.
+	 * 
+	 * @param s
+	 * @return
+	 */
+	public static String upper(String s){
+		char[] result = s.toCharArray();
+		for(int i = 0, counti = result.length; i < counti; i++){
+			result[i] = CharUtil.upper(result[i]);
+		}
+		return new String(result);
+	}
 
 }

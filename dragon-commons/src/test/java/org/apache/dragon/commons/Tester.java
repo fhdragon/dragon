@@ -1,6 +1,7 @@
 package org.apache.dragon.commons;
 
 import org.apache.dragon.commons.util.CharUtil;
+import org.apache.dragon.commons.util.StringUtil;
 
 /**
  * Tester: temp test
@@ -20,10 +21,8 @@ public class Tester {
 	 * @param args
 	 */
 	public static void main(String[] args) throws Exception {
-		System.out.println(CharUtil.lowerCase('A'));
-		System.out.println(CharUtil.lowerCase('a'));
-		System.out.println(CharUtil.upperCase('A'));
-		System.out.println(CharUtil.upperCase('a'));
+		System.out.println(StringUtil.lower("sfdDFWERWdfsdf对方地方sdfSDFDSF324234498"));
+		System.out.println(StringUtil.upper("sfdDFWERWdfsdf对方地方sdfSDFDSF324234498"));
 //		for(int i = 65; i<91; i++){
 //			System.out.print("     " + i + ", ");
 //		}

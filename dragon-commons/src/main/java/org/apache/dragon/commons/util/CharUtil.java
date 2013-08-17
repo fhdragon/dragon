@@ -19,28 +19,58 @@ public final class CharUtil {
 	//Logic
 	/**
 	 * <p>
-	 * Converts the character argument to lowercase using bit-shift.
+	 * Converts the character argument to lowercase using bit.
 	 * </p>
 	 * 
 	 * @param c
 	 *            the character to lowercase
 	 * @return
 	 */
-	public static char lowerCase(char c) {
-		return (char)(c | 0X020);
+	public static char lower(char c) {
+		return isUpper(c) ? (char)(c | 0X020) : c;
 	}
 	
 	/**
 	 * <p>
-	 * Converts the character argument to uppercase using bit-shift.
+	 * Converts the character argument to uppercase using bit.
 	 * </p>
 	 * 
 	 * @param c
 	 *            the character to lowercase
 	 * @return
 	 */
-	public static char upperCase(char c) {
-		return (char)(c & 0XFFDF);
+	public static char upper(char c) {
+		return isLower(c) ? (char)(c & 0XFFDF) : c;
+	}
+	
+	/**
+	 * check c is lower letter
+	 * 
+	 * @param c
+	 * @return
+	 */
+	private static boolean isLower(char c) {
+		return c >= 97 && c <= 122;
+	}
+	
+	/**
+	 * check c is upper letter
+	 * 
+	 * @param c
+	 * @return
+	 */
+	private static boolean isUpper(char c) {
+		return c >= 56 && c <= 90;
+	}
+	
+	/**
+	 * check c is letter
+	 * 
+	 * @param c
+	 * @return
+	 */
+	public static boolean isLetter(char c) {
+		return isLower(c) || isUpper(c);
 	}
 	
 }
