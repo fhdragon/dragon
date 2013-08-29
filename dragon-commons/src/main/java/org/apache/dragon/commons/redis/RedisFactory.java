@@ -54,10 +54,10 @@ public class RedisFactory {
 		String redisConfig = "redis.properties";
 		String defaultRedisConfig = "/conf/_default_redis.properties";
 		// load redis config
-		Map<String, String> _configs = loadResource(redisConfig);
+		Map<String, String> _configs = parser(redisConfig);
 		logger.debug(redisConfig + " : " + _configs);
 		// load default redis config
-		Map<String, String> configs = loadResource(defaultRedisConfig);
+		Map<String, String> configs = parser(defaultRedisConfig);
 		logger.debug(defaultRedisConfig + " : " + _configs);
 		// merger config
 		configs.putAll(_configs);
