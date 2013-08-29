@@ -31,7 +31,8 @@ public class ResourceUtil {
 				_props.loadFromXML(in);
 			}
 		} catch (Exception e) {
-			throw new RuntimeException("load file err: " + fn, e);
+//			throw new RuntimeException("load file err: " + fn, e);
+			e.printStackTrace();
 		}
 		Map<String, String> map = new HashMap<String, String>();
 		for(Map.Entry<Object, Object> entry : _props.entrySet()){
