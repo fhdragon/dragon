@@ -12,6 +12,12 @@
 
 	<dependencies>
 
+		<dependency>
+			<groupId>org.igniterealtime.smack</groupId>
+			<artifactId>smack</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+
 		<!-- Begin:add by Wenlong Meng at 2012/07/15 for framework -->
 		<dependency>
 			<groupId>dragon</groupId>
