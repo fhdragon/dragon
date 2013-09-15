@@ -40,7 +40,7 @@ public class UserDaoTest {
 	/**
 	 * test select method
 	 */
-	@Test
+	//@Test
 	public void select(){
 		logger.debug("Begin: select()...");
 		User result = dao.select(2);
@@ -50,7 +50,7 @@ public class UserDaoTest {
 	/**
 	 * test add method
 	 */
-	@Test
+//	@Test
 	public void add(){
 		logger.debug("Begin: add()...");
 		User user = new User();

@@ -48,7 +48,7 @@ public class UserFollowerDaoTest {
 	 * test select method
 	 * @throws Exception 
 	 */
-	@Test
+//	@Test
 	public void parse() throws Exception{
 		logger.debug("Begin: parse()...");
 		long st = System.currentTimeMillis();
