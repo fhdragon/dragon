@@ -130,13 +130,12 @@ public final class StringUtil {
 	 * @since 2.0
 	 */
 	public static boolean blank(String str) {
-		return str == null || str.trim().length() == 0;
+		return str == null || str.length() == 0 || str.trim().length() == 0;
 	}
 	
 	/**
      * Compares the specified string s1 to the specified string s2.  The result is {@code
-     * true} if and only if {@code s1 == null && s2 == null} or {@code s1.equalsIngoreCase(s2)}
-     * object.
+     * true} if and only if {@code s1 == null && s2 == null} or {@code s1.intern() == s2.intern()}
      *
      * @param  s1
      *         The string to compare s2 against

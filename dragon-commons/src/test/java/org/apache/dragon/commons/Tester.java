@@ -1,5 +1,7 @@
 package org.apache.dragon.commons;
 
+import java.util.Arrays;
+
 import org.apache.dragon.commons.util.CharUtil;
 import org.apache.dragon.commons.util.StringUtil;
 
@@ -21,6 +23,13 @@ public class Tester {
 	 * @param args
 	 */
 	public static void main(String[] args) throws Exception {
+		char[] is = new char[4];
+		is[3] = 98;
+		is[2] = (char)0;
+		is[1] = 97;
+		is[0] = '0';
+		System.out.println(Arrays.toString(is));
+		System.out.println((char)0);
 		System.out.println(StringUtil.lower("sfdDFWERWdfsdf对方地方sdfSDFDSF324234498"));
 		System.out.println(StringUtil.upper("sfdDFWERWdfsdf对方地方sdfSDFDSF324234498"));
 //		for(int i = 65; i<91; i++){
