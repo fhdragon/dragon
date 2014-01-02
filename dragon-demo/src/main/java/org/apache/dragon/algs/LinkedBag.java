@@ -3,61 +3,68 @@ package org.apache.dragon.algs;
 import java.util.Iterator;
 
 /**
- * 栈集合数据类型实现
+ * 背包集合数据类型实现
  * 
  * @author Wenlong Meng(wenlong.meng@gmail.com)
  * @version 1.0 at Dec 30, 2013
  * @since 1.0
  */
-public class LinkedStack<T> implements Stack<T>, Iterable<T> {
+public class LinkedBag<T> implements Iterable<T> {
 
 	// Local variables
 	/**
-	 * first node
+	 * the head of bag
 	 */
 	private Node head;
+	/**
+	 * the max of data
+	 */
+	private int max;
 	/**
 	 * the number of data
 	 */
 	private int size;
-
+	
 	// Constructor
 	/**
-	 * Constructs an empty <code>stack</code> instance with the specified default max capacity.
+	 * Constructs an empty <code>Bag</code> instance with the specified default max capacity.
 	 * 
 	 * @param max
 	 */
-	public LinkedStack() {
+	public LinkedBag() {
+		this(Integer.MAX_VALUE);
+	}
+
+	/**
+	 * Constructs an empty <code>Bag</code> instance with the specified max capacity.
+	 * 
+	 * @param max
+	 *            the max of the age
+	 * @exception IllegalArgumentException
+	 *                if the specified max capacity is negative
+	 */
+	public LinkedBag(int max) {
+		this.max = max;
 	}
 
 	// Logic
 	/**
-	 * push e into bag
+	 * add e into bag
 	 * 
 	 * @param e
 	 * @return
 	 */
-	public void push(T e) {
+	public void add(T e) {
+		if(size == max){
+			throw new RuntimeException("this bag is full.");
+		}
 		Node n = new Node();
 		n.t = e;
 		n.next = head;
 		head = n;
 		size++;
 	}
-	
-	/**
-	 * pop e from bag
-	 * 
-	 * @param e
-	 * @return
-	 */
-	public T pop() {
-		T result = head.t;
-		head = head.next;
-		size--;
-		return result;
-	}
-	
+
 	/**
 	 * Returns the number of elements in this list.
 	 * 
@@ -76,42 +83,39 @@ public class LinkedStack<T> implements Stack<T>, Iterable<T> {
 		return size == 0;
 	}
 
-	@Override
+	/**
+	 * iterator
+	 * 
+	 * @return
+	 */
 	public Iterator<T> iterator() {
-		return new ReverseArrayIterator();
+		return new ListIterator();
 	}
 	
-	//inner class
+	// inner class
 	/**
-	 * ReverseArrayIterator: 
+	 * ListIterator:
 	 * 
 	 * @author Wenlong Meng(wenlong.meng@gmail.com)
 	 * @version 1.0 at Dec 30, 2013
 	 * @since 1.0
 	 */
-	private class ReverseArrayIterator implements Iterator<T> {
-		
-		//local variables
-		private int index = size;
+	private class ListIterator implements Iterator<T> {
+
 		private Node h = head;
 
-		@Override
 		public boolean hasNext() {
-			return index > 0;
+			return h != null;
 		}
 
-		@Override
-		public T next() {
-			T r = h.t;
-			h = h.next;
-			index--;
-			return r;
-		}
-
-		@Override
 		public void remove() {
 		}
-		
+
+		public T next() {
+			T t = h.t;
+			h = h.next;
+			return t;
+		}
 	}
 	
 	/**
@@ -121,9 +125,8 @@ public class LinkedStack<T> implements Stack<T>, Iterable<T> {
 	 * @version 1.0 at Dec 30, 2013
 	 * @since 1.0
 	 */
-	private class Node {
-		//local variables
-		T t;
+	public class Node {
+		T t; 
 		Node next;
 	}
 

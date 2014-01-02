@@ -3,13 +3,13 @@ package org.apache.dragon.algs;
 import java.util.Iterator;
 
 /**
- * 栈集合数据类型实现
+ * 背包集合数据类型实现
  * 
  * @author Wenlong Meng(wenlong.meng@gmail.com)
  * @version 1.0 at Dec 30, 2013
  * @since 1.0
  */
-public class ArrayStack<T> implements Stack<T>, Iterable<T> {
+public class ArrayBag<T> implements Bag<T> {
 
 	// Local variables
 	/**
@@ -31,69 +31,50 @@ public class ArrayStack<T> implements Stack<T>, Iterable<T> {
 
 	// Constructor
 	/**
-	 * Constructs an empty <code>stack</code> instance with the specified default max capacity.
+	 * Constructs an empty <code>Bag</code> instance with the specified default max capacity.
 	 * 
 	 * @param max
 	 */
-	public ArrayStack() {
+	public ArrayBag() {
 		this(Integer.MAX_VALUE);
 	}
 
 	/**
-	 * Constructs an empty <code>stack</code> instance with the specified max capacity.
+	 * Constructs an empty <code>Bag</code> instance with the specified max capacity.
 	 * 
 	 * @param max
-	 *            the max of the stack
+	 *            the max of the age
 	 * @exception IllegalArgumentException
 	 *                if the specified max capacity is negative
 	 */
 	@SuppressWarnings("unchecked")
-	public ArrayStack(int max) {
+	public ArrayBag(int max) {
 		this.max = max;
 		this.data = (T[])new Object[DEFAULT_INIT_CAPACITY];
 	}
 
 	// Logic
 	/**
-	 * push e into bag
+	 * add e into bag
 	 * 
 	 * @param e
 	 * @return
 	 */
-	public void push(T e) {
-		if(size == data.length){
-			resize(size * 2 > max ? max : size * 2);
-		}
+	public void add(T e) {
+		resize();
 		this.data[size++] = e;
 	}
 	
-	/**
-	 * pop e from bag
-	 * 
-	 * @param e
-	 * @return
-	 */
-	public T pop() {
-		T e = this.data[--size];
-		this.data[size] = null;
-		if(size == data.length / 4){
-			resize(data.length / 2);
-		}
-		return e;
-	}
-	
 	 /**
-     * Increases the capacity of this <tt>ArrayStack</tt> instance, if
+     * Increases the capacity of this <tt>Bag</tt> instance, if
      * necessary, to ensure that it can hold at least the number of elements
      * specified by the (size * 2 / max) capacity.
      */
-	@SuppressWarnings("unchecked")
-	private void resize(int newSize){
-		T[] newData = (T[])new Object[newSize];
-		for(int i = 0; i < size; i++){
-			newData[i] = data[i];
+	private void resize(){
+		if(size == this.max){
+			// minCapacity is usually close to size, so this is a win:
+            data = java.util.Arrays.copyOf(data, size * 2 > max ? max : size * 2);
 		}
-		data = newData;
 	}
 
 	/**
@@ -119,11 +100,18 @@ public class ArrayStack<T> implements Stack<T>, Iterable<T> {
 	  */
 	@Override
 	public Iterator<T> iterator() {
-		return new ReverseArrayIterator();
+		return new ListIterator();
 	}
 	
-	//inner class
-	private class ReverseArrayIterator implements Iterator<T> {
+	//inner class 
+	/**
+	 * ListIterator: 
+	 * 
+	 * @author Wenlong Meng(wenlong.meng@gmail.com)
+	 * @version 1.0 at Dec 30, 2013
+	 * @since 1.0
+	 */
+	public class ListIterator implements Iterator<T> {
 		
 		//local variables
 		private int index = size;
@@ -139,8 +127,7 @@ public class ArrayStack<T> implements Stack<T>, Iterable<T> {
 		}
 
 		@Override
-		public void remove() {
-		}
+		public void remove() {}
 		
 	}
 

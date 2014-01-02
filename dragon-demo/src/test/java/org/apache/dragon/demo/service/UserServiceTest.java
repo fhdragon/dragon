@@ -50,7 +50,7 @@ public class UserServiceTest {
 	/**
 	 * test add a new user
 	 */
-	//@Test
+	@Test
 	public void add(){
 		logger.debug("Begin: add()...");
 		User user = new User();
