@@ -18,12 +18,23 @@ public class SortShell {
 	 * @param is
 	 */
 	public static void sort(int[] ds){
-		for(int i = 1, maxi = ds.length; i < maxi; i++){
-			for(int j = i; j > 0; j--){
-				if(ds[j] < ds[j - 1]){
-					int t = ds[j];
-					ds[j] = ds[j - 1];
-					ds[j - 1] = t;
+		int length = ds.length;
+		int h = 1;
+		//确定步长：1，4，13，40，121，364，1093，。。。
+		while(h < length / 3){
+			h = 3 * h + 1;
+		}
+		//按步长循环排序
+		for(; h >= 1; h /= 3){//调整步长
+		//h-sort the array
+			for(int i = h; i < length; i++){
+				//insert a[i] among a[i - h], a[i - 2 * h], a[i - 3 * h] ...
+				for(int j = i; j >= h; j -= h){
+					if(ds[j] < ds[j - h]){
+						int t = ds[j];
+						ds[j] = ds[j - h];
+						ds[j - h] = t;
+					}
 				}
 			}
 		}
