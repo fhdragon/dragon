@@ -23,7 +23,7 @@ public class Tester {
 	 * test generator next id
 	 */
 	public static void main(String[] args){
-		logger.debug("Begin: next()...");
+		logger.debug("Begin: next(1111111111)...");
 		System.out.println("?sourceid=school&amp;amp;cid=1".replaceAll("amp;", ""));
 		long result = 0, st = System.currentTimeMillis();
 		System.out.println("Cost: " + (System.currentTimeMillis() - st));
