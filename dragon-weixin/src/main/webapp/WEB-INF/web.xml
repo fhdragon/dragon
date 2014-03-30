@@ -1,0 +1,90 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0" metadata-complete="true">
+
+	<display-name>dragon weixin</display-name>
+	<description>dragon weixin</description>
+
+	<!-- - Key of the system property that should specify the root directory 
+		of this - web app. Applied by WebAppRootListener or Log4jConfigListener. -->
+	<!-- <context-param> <param-name>webAppRootKey</param-name> <param-value>framework</param-value> 
+		</context-param> -->
+
+	<!-- The definition of the Root Spring Container shared by all Servlets 
+		and Filters -->
+	<!-- - Location of the XML file that defines the root application context. 
+		- Applied by ContextLoaderServlet. -->
+	<!-- context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:**/applicationContext*.xml</param-value>
+	</context-param> -->
+
+	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<!-- listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener> -->
+
+	<!-- Reads request input using UTF-8 encoding -->
+	<filter>
+		<filter-name>characterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>characterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- Processes application requests -->
+	<!-- - Servlet that dispatches request to registered handlers (Controller 
+		implementations). -->
+	<servlet>
+		<servlet-name>remoting</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>
+			     classpath*:conf/applicationContext*.xml
+			</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>remoting</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<!-- used so we can use forms of method type 'PUT' and 'DELETE' see here: 
+		http://static.springsource.org/spring/docs/current/spring-framework-reference/html/view.html#rest-method-conversion -->
+	<filter>
+		<filter-name>httpMethodFilter</filter-name>
+		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>httpMethodFilter</filter-name>
+		<servlet-name>remoting</servlet-name>
+	</filter-mapping>
+	
+	<servlet-mapping>  
+        <servlet-name>default</servlet-name>  
+     <url-pattern>/static/*</url-pattern>  
+</servlet-mapping>
+
+	<!-- Disables Servlet Container welcome file handling. Needed for compatibility 
+		with Servlet 3.0 and Tomcat 7.0 -->
+	<welcome-file-list>
+		<welcome-file></welcome-file>
+	</welcome-file-list>
+
+</web-app>
