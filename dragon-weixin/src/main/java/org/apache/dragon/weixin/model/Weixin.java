@@ -132,6 +132,7 @@ public class Weixin implements Serializable {
 				+ echostr + ", url=" + url + ", token=" + token + "]";
 	}
 
+    //inner class: message model
     /**
      * message for weixin
      *
@@ -139,15 +140,13 @@ public class Weixin implements Serializable {
      * @version 1.0 at 2014/03/30
      * @since 1.0
      */
-    public static class TextMsg implements Serializable {
+    public static class Msg implements Serializable {
 
         //local variables
         private String ToUserName;
         private String FromUserName;
         private long CreateTime;
         private String MsgType;
-        private String Content;
-        private String MsgId;
 
         //getter and setter
         public String getToUserName() {
@@ -182,6 +181,31 @@ public class Weixin implements Serializable {
             this.MsgType = msgType;
         }
 
+        @Override
+        public String toString() {
+            return "Msg{" +
+                    "ToUserName='" + ToUserName + '\'' +
+                    ", FromUserName='" + FromUserName + '\'' +
+                    ", CreateTime=" + CreateTime +
+                    ", MsgType='" + MsgType + '\'' +
+                    '}';
+        }
+    }
+
+    /**
+     * message for weixin
+     *
+     * @author Wenlong Meng(wenlong.meng@gmail.com)
+     * @version 1.0 at 2014/03/30
+     * @since 1.0
+     */
+    public static class TextMsg extends Msg {
+
+        //local variables
+        private String Content;
+        private String MsgId;
+
+        //getter and setter
         public String getContent() {
             return Content;
         }
@@ -200,14 +224,60 @@ public class Weixin implements Serializable {
 
         @Override
         public String toString() {
-            return "Msg{" +
-                    "toUserName='" + ToUserName + '\'' +
-                    ", fromUserName='" + FromUserName + '\'' +
-                    ", createTime='" + CreateTime + '\'' +
-                    ", msgType='" + MsgType + '\'' +
-                    ", Content='" + Content + '\'' +
-                    ", msgId='" + MsgId + '\'' +
-                    '}';
+            return "TextMsg{" +
+                    "Content='" + Content + '\'' +
+                    ", MsgId='" + MsgId + '\'' +
+                    "} " + super.toString();
+        }
+    }
+
+    /**
+     * message for weixin
+     *
+     * @author Wenlong Meng(wenlong.meng@gmail.com)
+     * @version 1.0 at 2014/03/30
+     * @since 1.0
+     */
+    public static class FullMsg extends TextMsg {
+
+        //local variables
+        private String Event;
+        private String EventKey;
+        private String Ticket;
+
+        //getter and setter
+
+        public String getEvent() {
+            return Event;
+        }
+
+        public void setEvent(String event) {
+            Event = event;
+        }
+
+        public String getEventKey() {
+            return EventKey;
+        }
+
+        public void setEventKey(String eventKey) {
+            EventKey = eventKey;
+        }
+
+        public String getTicket() {
+            return Ticket;
+        }
+
+        public void setTicket(String ticket) {
+            Ticket = ticket;
+        }
+
+        @Override
+        public String toString() {
+            return "FMsg{" +
+                    "Event='" + Event + '\'' +
+                    ", EventKey='" + EventKey + '\'' +
+                    ", Ticket='" + Ticket + '\'' +
+                    "} " + super.toString();
         }
     }
 

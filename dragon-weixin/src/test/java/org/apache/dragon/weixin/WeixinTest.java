@@ -1,11 +1,14 @@
 package org.apache.dragon.weixin;
 
 import com.thoughtworks.xstream.XStream;
+import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.io.IOUtils;
 import org.apache.dragon.weixin.model.Weixin;
+import org.apache.dragon.weixin.util.Consts;
 
 import java.io.InputStream;
-import java.io.Serializable;
+import java.security.MessageDigest;
+import java.util.Arrays;
 
 /**
  * TODO
@@ -39,6 +42,26 @@ public class WeixinTest {
 
         String r = xs.toXML(msg);
         System.out.println(r);
+
+        //check
+        String signature="ade92b86fa40843035d68d652c288d406144a10a", timestamp="1396302544", nonce="1571167924";
+        boolean rs = check(signature, timestamp, nonce);
+        System.out.println(rs);
+
+    }
+    public static boolean check(String signature, String timestamp, String nonce){
+        String[] str = {Consts.WEIXIN_TOKEN, timestamp, nonce};
+        Arrays.sort(str); // 字典序排序
+        String bigStr = str[0] + str[1] + str[2];
+        // SHA1加密
+        String digest = "";
+        try{
+            digest = Hex.encodeHexString(MessageDigest.getInstance("SHA1").digest(bigStr.getBytes())).toLowerCase();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return digest.equals(signature);
     }
 
 }
