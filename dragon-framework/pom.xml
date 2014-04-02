@@ -12,6 +12,23 @@
 
 	<dependencies>
 
+		<!-- Begin:add by Wenlong Meng at 2012/07/15 for test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${org.junit-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- End:add by Wenlong Meng at 2012/07/15 for test -->
+
+		<!-- Begin:add by Wenlong Meng at 2012/07/15 for log -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${org.log4j-version}</version>
+		</dependency>
+		<!-- End:add by Wenlong Meng at 2012/07/15 for log -->
+
 		<!-- Begin:add by Wenlong Meng at 2012/07/15 for file upload -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
