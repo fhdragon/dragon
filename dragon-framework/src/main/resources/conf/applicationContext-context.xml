@@ -14,12 +14,26 @@
 	<!-- Configurer that replaces ${...} placeholders with values from properties files -->
     <!-- (in this case, mail and JDBC related properties) -->
     <context:property-placeholder location="classpath*:**/*.properties" />
-	
-	<!-- import other config files -->
+
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                    <property name="supportedMediaTypes">
+                        <list>
+                            <value>text/html;charset=UTF-8</value>
+                        </list>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <!-- import other config files -->
 	<!-- import resource="spring-*.xml"/> -->
 	
 	<!-- application context utilities -->
-	<bean id="appContextUtils" class="org.apache.dragon.framework.util.AppContextUtils"></bean>
+    <context:component-scan base-package="org.apache.dragon.framework" />
 	
 	<!-- scan for service/facade/controller -->
     <context:component-scan base-package="**.service" />
