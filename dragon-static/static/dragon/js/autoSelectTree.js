@@ -34,12 +34,14 @@ function _autoZTree(key) {
 		var idKey = _target.attr("_idKey") || 'id';
 		var children = _target.attr("_children") || 'children';
 		var name = _target.attr("_name") || "name";
+		var selectParent = _target.attr("_selectParent") || false;
 		/**
-		 * 双击选择逻辑：忽略根节点
+		 * 双击选择逻辑：根据配置是否忽略父节点，默认父节点不可选择
 		 */
 		function selectNode(event, treeId, treeNode) {
-			// 忽略根节点
-			if (treeNode.pid != -1) {
+			// 忽略父节点
+            if (!treeNode.isParent || selectParent) {
+//			if (treeNode.pid != -1) {
 				_target.val(treeNode[name]);
 				_target.attr("_val", treeNode[name]);
 				_target.attr("_id", treeNode[idKey]);
