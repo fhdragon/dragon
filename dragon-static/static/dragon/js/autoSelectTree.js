@@ -1,11 +1,13 @@
 /**
- * 自动弹出树形选择器
+ * auto select with ztree
  * 
  * @author Wenlong Meng(wenlong.meng@gmail.com)
  * @version 1.0 at 2014/05/10
  */
+ //load css and script
 $('head').append('<link href="/static/ztree/css/zTreeStyle.css" rel="stylesheet">');
 $('head').append('<script src="/static/ztree/js/jquery.ztree.all-3.5.min.js"></script>');
+
 $(document).ready(function() {
 	$("._autoPopTree").each(function() {
 		var _k = $(this).attr("id");
@@ -25,10 +27,6 @@ function _autoZTree(key) {
 				+ '</div>' + '<ul id="_' + ___key + 's" class="ztree"></ul>'
 				+ '</div>';
 		$("body").append(selectDepDivStr);
-		// var _targetOffset = _target.offset();
-		// $("#_" + ___key + "Div").css({left:_targetOffset.left + "px",
-		// top:_targetOffset.top + _target.outerHeight() + "px", width:
-		// _target.outerWidth()});
 
 		var pIdKey = _target.attr("_pIdKey") || 'pId';
 		var idKey = _target.attr("_idKey") || 'id';
@@ -36,12 +34,10 @@ function _autoZTree(key) {
 		var name = _target.attr("_name") || "name";
 		var selectParent = _target.attr("_selectParent") || false;
 		/**
-		 * 双击选择逻辑：根据配置是否忽略父节点，默认父节点不可选择
+		 * select node: ignore parent node, if selectParent is false
 		 */
 		function selectNode(event, treeId, treeNode) {
-			// 忽略父节点
             if (!treeNode.isParent || selectParent) {
-//			if (treeNode.pid != -1) {
 				_target.val(treeNode[name]);
 				_target.attr("_val", treeNode[name]);
 				_target.attr("_id", treeNode[idKey]);
@@ -53,7 +49,7 @@ function _autoZTree(key) {
 			}
 		}
 
-		// 组织机构树设置
+		//options
 		var setting = {
 			data : {
 				simpleData : {
@@ -71,7 +67,7 @@ function _autoZTree(key) {
 				onClick : selectNode
 			}
 		};
-		// 加载组织结构数据
+		//load data
 		var url = _target.attr("_url");
 		$.ajax({
 			url : BI_PATH_BASE + url,
@@ -85,14 +81,14 @@ function _autoZTree(key) {
 				}
 			},
 			error : function() {
-//				bootbox.alert("操作失败!");
+//				bootbox.alert("fail!");
 			}
 		});
-		//点击其他地方隐藏树
+		//hidden tree, if click other
 		$(document).click(function(e) {
-			var e = e || window.event; // 浏览器兼容性
+			var e = e || window.event; //ie
 			var elem = e.target || e.srcElement;
-			while (elem) { // 循环判断至跟节点，防止点击的是div子元素
+			while (elem) {
 				if (elem.id && ((elem.id == "_" + ___key + "Div") || (elem.id == ___key))) {
 					return;
 				}
@@ -100,8 +96,9 @@ function _autoZTree(key) {
 			}
 			$("#_" + ___key + "Div").modal('hide');
 		});
-		/* 保存 */
+		//show tree
 		_target.focus(function() {
+		    //position
 			var _targetOffset = _target.offset();
 			$("#_" + ___key + "Div").css({
 				left : _targetOffset.left + "px",
