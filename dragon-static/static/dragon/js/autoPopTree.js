@@ -4,8 +4,10 @@
  * @author Wenlong Meng(wenlong.meng@gmail.com)
  * @version 1.0 at 2014/05/10
  */
+//load css and js
 $.getScript("/static/ztree/js/jquery.ztree.all-3.5.min.js");
 $('head').append('<link href="/static/ztree/css/zTreeStyle.css" rel="stylesheet">');
+
 $(document).ready(
 function() {
 	$("._autoPopTree").each(function() {
@@ -37,12 +39,12 @@ function _autoZTree(key){
 		var idKey = _target.attr("_idKey") || 'id';
 		var children = _target.attr("_children") || 'children';
 		var name = _target.attr("_name") || "name";
+		var selectParent = _target.attr("_selectParent") || false;
 		/**
-		 * 双击选择逻辑：忽略根节点
+		 * select node: ignore parent node if selectParent is false
 		 */
-		function onDblClick(event, treeId, treeNode) {
-			//忽略根节点
-			if (treeNode.pid != -1) {
+		function selectNode(event, treeId, treeNode) {
+			if (!treeNode.isParent || selectParent) {
 				_target.val(treeNode[name]);
 				_target.attr("_id", treeNode[idKey]);
 				$("#_" + ___key + "Div").modal('hide');
@@ -53,7 +55,7 @@ function _autoZTree(key){
 			}
 		}
 		
-		//树型控件设置
+		//options
 		var setting = {
 			data : {
 				simpleData : {
@@ -68,10 +70,11 @@ function _autoZTree(key){
 				}
 			},
 			callback : {
-				onDblClick : onDblClick
+				onClick : selectNode
 			}
 		};
-		//加载结构数据
+
+		//load data
 		var url = _target.attr("_url");
 		$.ajax({
 			url : BI_PATH_BASE + url,
@@ -85,11 +88,11 @@ function _autoZTree(key){
 				}
 			},
 			error : function() {
-				//bootbox.alert("操作失败!");
+				//bootbox.alert("fail!");
 			}
 		});
 		
-		/*保存*/
+		//show tree
 		_target.focus(function(){
 			$("#_" + ___key + "Div").modal();
 		});
